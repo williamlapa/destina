@@ -1,7 +1,7 @@
 # require 'faker'
-number = 1
+number = 0
 
-while number <= 10
+while number < 10
   rand_text = (0...10).map { ('a'..'z').to_a[rand(26)] }.join
   quantity = rand(0..100)
   valor = rand(100..100_000)
@@ -54,17 +54,19 @@ while number <= 10
     catid = 10
   end
 
+  # user = User.create(cpf: "123456789#{number}",
+  #                    first_name: rand_text,
+  #                    last_name: rand_text,
+  #                    email: "a#{number + 1}@email.com",
+  #                    password: "123123",
+  #                    cnpj: "000000000001#{number}",
+  #                    address: rand_text,
+  #                    entity_type: entity.capitalize,
+  #                    role: role.capitalize,
+  #                    entity_name: rand_text)
 
-  user = User.create(cpf: "123456789#{number}",
-                     first_name: rand_text,
-                     last_name: rand_text,
-                     email: "a#{number}@email.com",
-                     password: "123123",
-                     cnpj: "000000000001#{number}",
-                     address: rand_text,
-                     entity_type: entity.capitalize,
-                     role: role.capitalize,
-                     name: rand_text)
+  # category = Category.create(name: categories[number])
+
 
   product = Product.create(name: rand_text.capitalize,
                            brand: brand.capitalize,
@@ -75,9 +77,5 @@ while number <= 10
                            value: valor,
                            category_id: catid)
 
-  category = Category.create(name: categories[number])
-  # puts bike.valid?.to_s
-  # puts "bike#{number}@email.com"
-  # puts "Seed for user: #{user.id} Mr(s) #{bike.name.upcase} - Address: #{bike.address}"
   number += 1
 end
