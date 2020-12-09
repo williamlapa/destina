@@ -8,7 +8,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.integer :quantity
       t.string :status
       t.integer :value
-
+      t.references :category, null: false, foreign_key: true
       t.timestamps
     end
   end
