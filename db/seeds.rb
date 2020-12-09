@@ -1,4 +1,6 @@
-# require 'faker'
+# Rodar uma vez para criar Users e Categories
+# Descomentar Products, comentar Users e Categories
+# Rodar de novo
 number = 0
 
 while number < 10
@@ -54,28 +56,28 @@ while number < 10
     catid = 10
   end
 
-  # user = User.create(cpf: "123456789#{number}",
-  #                    first_name: rand_text,
-  #                    last_name: rand_text,
-  #                    email: "a#{number + 1}@email.com",
-  #                    password: "123123",
-  #                    cnpj: "000000000001#{number}",
-  #                    address: rand_text,
-  #                    entity_type: entity.capitalize,
-  #                    role: role.capitalize,
-  #                    entity_name: rand_text)
+  user = User.create(cpf: "123456789#{number}",
+                     first_name: rand_text,
+                     last_name: rand_text,
+                     email: "a#{number + 1}@email.com",
+                     password: "123123",
+                     cnpj: "000000000001#{number}",
+                     address: rand_text,
+                     entity_type: entity.capitalize,
+                     role: role.capitalize,
+                     entity_name: rand_text)
 
-  # category = Category.create(name: categories[number])
+  category = Category.create(name: categories[number])
 
 
-  product = Product.create(name: rand_text.capitalize,
-                           brand: brand.capitalize,
-                           description: rand_text,
-                           address: rand_text,
-                           quantity: quantity,
-                           status: status.capitalize,
-                           value: valor,
-                           category_id: catid)
+  # product = Product.create(name: rand_text.capitalize,
+  #                          brand: brand.capitalize,
+  #                          description: rand_text,
+  #                          address: rand_text,
+  #                          quantity: quantity,
+  #                          status: status.capitalize,
+  #                          value: valor,
+  #                          category_id: catid)
 
   number += 1
 end
