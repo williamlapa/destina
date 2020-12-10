@@ -1,0 +1,19 @@
+<%= simple_form_for(@request, @category) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name, collection: @categories, input_html: {multiple: true} %> <%# duvida aqui, como lista formulário dropdown ? %>
+    <%= f.input :name, as: :check_boxes, collection: @categories, wrapper: :vertical_collection_inline %> <%# duvida aqui, como lista formulário dropdown ? %>
+    <%= f.input :description %>
+    <%= f.input :quantity %>
+    <%= f.input :status %> <%# duvida aqui, como começar pedido incluído ? %>
+    <%= f.input :legal_framework %> 
+    <%= f.input :photo, as: :file %>
+  </div>  
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+  </div>
+<% end %>
