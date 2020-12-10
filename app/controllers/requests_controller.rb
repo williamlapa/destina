@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
 
   def index
+    @requests = Request.all
     # @requests = policy_scope(Request)
   end
 

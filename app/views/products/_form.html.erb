@@ -1,0 +1,21 @@
+
+<%= simple_form_for(@product) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: 'Nome do produto' %>
+    <%= f.input :category_id, as: :select, collection: @categories, label: 'Categoria' %>
+    <%= f.input :brand, label: 'Marca' %>
+    <%= f.input :description, label: 'Descrição' %>
+    <%= f.input :address, :as => :string, label: 'Endereço do depósito' %>
+    <%= f.input :quantity, label: 'Quantidade' %>
+    <%= f.input :value, label: 'Valor atribuído' %>
+    <%= f.input :status, as: :select, collection: ['Disponível', 'Indisponível', 'Esgotado'], label: 'Situação' %>
+    <%= f.input :photo, as: :file, label: 'Incluir imagem' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Salvar', class: 'btn btn-primary' %>
+  </div>
+<% end %>
