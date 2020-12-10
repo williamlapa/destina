@@ -5,8 +5,5 @@ Rails.application.routes.draw do
   resources :requests do
     resources :orders, only: %i[new create]
   end
-
-  resources :products do
-    resources :orders, only: %i[new create]
-  end
+  resources :products
 end
