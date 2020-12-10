@@ -4,15 +4,30 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email,
+    <%= f.input :cpf, label: 'CPF',
                 required: true,
                 autofocus: true,
+                input_html: { autocomplete: "cpf" }%>
+    <%= f.input :first_name, label: 'Nome',
+                required: true,
+                input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name, label: 'Sobrenome',
+                required: true,
+                input_html: { autocomplete: "last_name" }%>
+    <%= f.input :cnpj, label: 'CNPJ',
+                required: true,
+                input_html: { autocomplete: "cnpj" }%>
+    <%= f.input :address, label: 'Endereço da entidade ou órgão',
+                required: true,
+                input_html: { autocomplete: "address" }%>
+    <%= f.input :email, label: 'E-mail',
+                required: true,
                 input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
+    <%= f.input :password, label: 'Insira sua senha',
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
+    <%= f.input :password_confirmation, label: 'Confirme sua senha',
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
   </div>
