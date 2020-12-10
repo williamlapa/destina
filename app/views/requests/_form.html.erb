@@ -2,11 +2,10 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%#= f.input :category, collection: @categories.order('name ASC'), input_html: {multiple: true} %> <%# duvida aqui, como lista formulário dropdown ? %>
-    <%= f.input :category, :label => "Categoria", as: :check_boxes, collection: @categories.order('name ASC'), wrapper: :vertical_collection_inline %> <%# duvida aqui, como lista formulário dropdown ? %>
+  <div class="form-inputs"> 
+    <%= f.input :category_id, :label => "Categoria", as: :radio_buttons, collection: @categories, wrapper: :vertical_collection_inline %>
     <%= f.input :description, as: :text, :label => "Descrição" %>
-    <%= f.input :quantity, :label => "Quantitade", as: :string %>
+    <%= f.input :quantity, :label => "Quantitade" %>
     <%= f.input :legal_framework, :label => "Tipo Entidade", as: :radio_buttons, collection: ["Orgão Público", "Entidades Sociais"] %>
     <%= f.input :photo, :label => "Foto ou Logo Entidade (opcional)", as: :file %>
   </div>  
