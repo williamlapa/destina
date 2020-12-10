@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="show-content d-flex">
+    
+    <div class="job-info col-6">
+      <div class="card-livro">
+        <img src="https://picsum.photos/id/24/200/300" />
+        <div class="card-trip-infos">
+            <h4 class="mt-2">Serviço de tradução</h4>
+            <h2 class="ml-1 mr-1"><%= @job.content %></h2>
+        </div>
+      </div>
+    </div>
+    
+    <div class="proposals-info col-6">
+      <div class="card card-proposal-show card-livro">
+        <div class="d-flex justify-content-between mr-1 mt-1 align-items-center">
+          <h3 class="pl-2 mt-2 pb-2">Propostas recebidas</h3>
+          <% if current_user.id != @job.user_id %>
+            <%= link_to 'Fazer proposta', new_job_proposal_path(@job), class: "btn btn-green btn-small"%>
+          <% end %>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Usuário</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Prazo</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+
+           <% @proposals.each_with_index do |proposal| %>
+            <% if proposal.status == 'accepted' %>
+              <tr class='table-success'>
+            <% elsif proposal.status == 'rejected'%>
+              <tr class='table-danger'>
+            <% else %>
+              <tr>
+            <% end %>
+           <% end %>
+
+          <% @proposals.each_with_index do |proposal| %>
+              <th scope="row" class=<%= "#{proposal.status}-status"%>><i class="fas fa-circle"></i></th>
+              <td><%= User.find(proposal.user_id).username %></td>
+              <td><%=  number_to_currency(proposal.price, precision: 2, unit: "R$", separator: ",") %></td>
+              <td><%= proposal.deadline.strftime("%d.%m.%Y") %></td>
+              <td>
+                <% proposal.status = "pending" if proposal.status.nil? %>
+                <% if proposal.status == "accepted" %>
+                  <% proposta = "Aceito" %>
+                <% elsif proposal.status == "rejected" %>
+                  <% proposta = "Rejeitado" %>
+                <% else %>
+                  <% proposta = "Pendente"  %>
+                <% end %>
+
+                <% if proposal.job.user.username == current_user.username || current_user.admin %>
+                  <%= link_to proposal.status.capitalize, edit_job_proposal_path(@job, proposal) %>
+                <% else %>
+                  <%= proposta %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade <%= 'accepted' if  @accepted_proposal %>" id="completedModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="completedModalLabel">Que bom que você achou o que queria! 😃</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% if @accepted_proposal %>
+      <div class="modal-body">
+        Agora você precisa entrar em contato com @<%= User.find(@accepted_proposal.user_id).username if @accepted_proposal %> para os ajustes finais:
+        <br>
+        Nome: <%= "#{User.find(@accepted_proposal.user_id).first_name} #{User.find(@accepted_proposal.user_id).last_name}" %>
+        <br>
+        E-mail: <%= User.find(@accepted_proposal.user_id).email %>
+      </div>
+      <% end %>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-green" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="min-height: 42vh;">
+</div>
