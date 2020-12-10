@@ -12,10 +12,10 @@
           <% if request.photo.attached? %>
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path request.photo.key, height: 200, width: 250,:crop=>"fill" %>);">
           <% else %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("entidadesocial.png")%>);">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("entidadesocial.jpg")%>);">
           <% end %>
               <div class="card-description">
-                <h2><%= request.entity_name %></h2>
+                <h2><%= request.category %></h2>
               </div>
             <%= link_to "", request_path(request), class: 'card-link' %>
             </div>
