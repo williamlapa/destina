@@ -1,8 +1,11 @@
 <div class="container d-flex justify-content-around">
-  <div class="justify-content-center">
+  <div class="mt-2 justify-content-center">
     <h1>Produtos</h1>
   </div>
-  <div class="col-8">
+  <div class = mt-2>
+    <a class="nav-item nav-link btn btn-outline-secondary btn-sm" href="<%= new_product_path %>">Novo Produto</a>
+  </div>
+  <div class="mt-2 col-6">
     <%= simple_form_for :search, url: products_path, method: :get do |f| %>
     <div class="search-form-control form-group">
       <input class="form-control string required" type="text" name="query" id="query" placeholder="Encontrar um produto" />
@@ -20,7 +23,7 @@
       <% @products.each do |product| %>
         <div class="col-12 col-md-4 col-lg-3">
           <% if product.photo.attached? %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path @product.photo.key, height: 200, width: 250,:crop=>"fill" %>);">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path product.photo.key, height: 200, width: 250,:crop=>"fill" %>);">
           <% else %>
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("depositoproducts.jpeg")%>);">
           <% end %>
@@ -29,7 +32,7 @@
                 <h3><%= product.quantity %></h3>
                 <p><%= product.description %></p>
               </div>
-            <%= link_to "Detalhes", product_path(product), class: 'card-link' %>
+            <%= link_to "", product_path(product), class: 'card-link' %>
             </div>
         </div>
       <% end %>

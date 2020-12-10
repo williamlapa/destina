@@ -8,17 +8,22 @@ class ProductsController < ApplicationController
   def show
   end
 
-  def edit
+  def new
+    @product = Product.new
+    @categories = Category.all
   end
 
   def create
     @product = Product.new(product_params)
-    @product.user_id = current_user.id
     if @product.save
       redirect_to product_path(@product), notice: 'Produto criado com sucesso.'
     else
       render 'new'
     end
+  end
+
+  def edit
+    @categories = Category.all
   end
 
   def update
@@ -41,6 +46,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :brand, :description, :address, :quantity, :status, :value, :photo)
+    params.require(:product).permit(:name, :category_id, :brand, :description, :address, :quantity, :status, :value, :photo)
   end
 end
