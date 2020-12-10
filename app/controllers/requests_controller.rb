@@ -11,6 +11,7 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @category = Category.new
+    @categories = Category.all
     # authorize @request
   end
 
