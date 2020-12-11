@@ -7,7 +7,6 @@ class RequestsController < ApplicationController
     else
       @requests = Request.where(user_id: current_user)
     end
-    # @requests = policy_scope(Request)
   end
 
   def show
@@ -17,9 +16,7 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
-    # @category = Category.new
     @categories = Category.order("name ASC")
-    # authorize @request
   end
 
   def edit
@@ -28,12 +25,9 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @request.user_id = current_user.id
-    @request.status = "pendente"
-    # @request.category = Category.find(params[:category])
-    # authorize @request
-
+    @request.status = "Em analise"
     if @request.save
-      redirect_to request_path(@request), notice: 'request was successfully created.'
+      redirect_to requests_path, notice: 'request was successfully created.'
     else
       render 'new'
     end
@@ -56,7 +50,6 @@ class RequestsController < ApplicationController
 
   def set_request
     @request = Request.find(params[:id])
-    # authorize @request
   end
 
   def request_params
