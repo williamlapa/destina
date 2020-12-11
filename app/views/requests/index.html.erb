@@ -1,49 +1,78 @@
 <div class="container d-flex justify-content-around">
   <div class="justify-content-center">
-    <h1>Pedidos</h1>
+    <h1>Lista de requerimentos</h1>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-4">
-      <div class="card-trip" >
-        <%= image_tag "entidadesocial" %>
-        <div class="card-trip-infos">
+    <% if current_user.role == 'RFB' %>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-light text-center">
+          <tr>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Entidade</th>
+            <th scope="col">Categoria produto</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Status</th>
+            <th scope="col" colspan="2">Opções</th>
+          </tr>
+        </thead>
+      <% @requests.each do |request| %>
+        <tr>
+          <td class="text-center"><%= request.user.cnpj %></td>
+          <td class="text-center"><%=request.user.entity_name %></td>
+          <td class="text-center"><%= request.category.name.capitalize %></td>
+          <td class="text-center"><%= request.quantity %></td>
+          <% if request.status == 'Em analise'%>
+            <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>
+          <% end %>
           <div>
-            <h2>Entidade:</h2>
-            <p><%= current_user.entity_name %></p>
+            <td class="text-center"><%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %></td>
+            <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
           </div>
-          <div>
-            <h2>Tipo da entidade:</h2>
-            <p><%= current_user.entity_type %></p>
+        </tr>
+      <% end %>
+    <% else %>
+      <div class="col-4">
+        <div class="card-trip" >
+          <%= image_tag "entidadesocial" %>
+          <div class="card-trip-infos">
+            <div>
+              <h2>Entidade:</h2>
+              <p><%= current_user.entity_name %></p>
+            </div>
+            <div>
+              <h2>Tipo da entidade:</h2>
+              <p><%= current_user.entity_type %></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <%# FIM DO CARD DA ENTIDADE %>
-    <div class="col-8">
-      <table class="table table-bordered table-striped">
-          <thead class="thead-light text-center">
-            <tr>
-              <th scope="col">Categoria</th>
-              <th scope="col">Quantidade</th>
-              <th scope="col">Status</th>
-              <th scope="col">Ação</th>
-            </tr>
-          </thead>
-          <% current_user.requests.each do |request| %>
+      <%# FIM DO CARD DA ENTIDADE %>
+      <div class="col-8">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-light text-center">
               <tr>
-                <td class="text-center"><%= request.category.name.capitalize %></td>
-                <td class="text-center"><%= request.quantity %></td>
-                <% if request.status == 'Em analise'%>
-                  <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>
-                <% end %>
-                <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
+                <th scope="col">Categoria</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Status</th>
+                <th scope="col">Ação</th>
               </tr>
-          <% end %> 
-        </table>
+            </thead>
+            <% current_user.requests.each do |request| %>
+                <tr>
+                  <td class="text-center"><%= request.category.name.capitalize %></td>
+                  <td class="text-center"><%= request.quantity %></td>
+                  <% if request.status == 'Em analise'%>
+                    <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>
+                  <% end %>
+                  <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
+                </tr>
+            <% end %> 
+          </table>
         <a class="btn btn-primary" href="<%= new_request_path %>">Novo pedido</a>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
