@@ -21,9 +21,11 @@
   </div>
 </div>  
   <div class="p-2">
+    <p><strong>Categoria:</strong> <%= @product.category.name %></p>
     <p><strong>Descrição:</strong> <%= @product.description %></p>
     <p><strong>Quantidade:</strong> <%= @product.quantity %></p>
     <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
+    <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
     <a class="btn btn-primary" href="<%=  %>">Gerar reserva</a>
   </div>
 
