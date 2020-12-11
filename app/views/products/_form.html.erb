@@ -8,7 +8,7 @@
     <%= f.input :category_id, as: :select, collection: @categories, label: 'Categoria' %>
     <%= f.input :brand, label: 'Marca' %>
     <%= f.input :description, label: 'Descrição' %>
-    <%= f.input :address, :as => :string, label: 'Endereço do depósito' %>
+    <%= f.input :address, label: 'Endereço do depósito' %>
     <%= f.input :quantity, label: 'Quantidade' %>
     <%= f.input :value, label: 'Valor atribuído' %>
     <%= f.input :status, as: :select, collection: ['Disponível', 'Indisponível', 'Esgotado'], label: 'Situação' %>
