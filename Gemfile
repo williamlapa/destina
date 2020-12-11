@@ -64,5 +64,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Dot-env
 gem 'dotenv-rails', groups: [:development, :test]
 
-# Gemfile
+# upload files
 gem 'cloudinary', '~> 1.16.0'
+
+# search
+gem 'pg_search', '~> 2.3.0'
