@@ -21,12 +21,10 @@
   align-items: baseline;
 }
 .card-description h2 {
-  font-size: 16px;
-  font-style: italic;
+  font-size: 20px;
 }
-
 .card-description h3 {
-  font-size: 8px;
+  font-size: 12px;
 }
 .card-link {
   position: absolute;
@@ -41,8 +39,6 @@
 .card-link:hover {
   opacity: 0.1;
 }
-
-
 
 .card2 {
   background-size: cover;

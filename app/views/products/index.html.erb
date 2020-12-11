@@ -29,8 +29,8 @@
           <% end %>
               <div class="card-description">
                 <h2><%= product.name %></h2>
-                <h3><%= product.quantity %></h3>
-                <p><%= product.description %></p>
+                <h3><%= product.category.name %></h3>
+                <h3>Quantity: <%= product.quantity %></h3>
               </div>
             <%= link_to "", product_path(product), class: 'card-link' %>
             </div>
