@@ -2,11 +2,17 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
 
   def index
-    @requests = Request.all
+    if current_user.role == 'RFB'
+      @requests = Request.all
+    else
+      @requests = Request.where(user_id: current_user)
+    end
     # @requests = policy_scope(Request)
   end
 
   def show
+    @user = current_user
+    @products = @request.available_products
   end
 
   def new
