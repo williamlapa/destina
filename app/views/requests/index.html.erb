@@ -1,34 +1,49 @@
 <div class="container d-flex justify-content-around">
   <div class="justify-content-center">
-    <h1>Requests</h1>
+    <h1>Pedidos</h1>
   </div>
 </div>
 
-<div class="container d-flex">
-  <div class="container">
-  <%# INSERIR AQUI O CARD DA ENTIDADE COM LOGO E AVATAR DO SOLICITANTE %>
-  <%# A IDEIA É QUE O CARD FIQUE AO LADO DAS REQUISIÇÕES %>
-  </div>
-
-  <div class="container">
-    <div class="row">
-    <%# INSERIR AQUI AS REQUISIÇÕES EMPILHADAS LINHA A LINHA %>
-    <%# CADA REQUISIÇÃO TERÁ O SEU STATUS AO LADO (ENVIADO, PENDENTE, FINALIZADO, EM ANÁLISE) %>
-     <% @requests.each do |request| %>
-        <div class="col-12 col-md-6 col-lg-6">
-          <% if request.photo.attached? %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path request.photo.key, height: 200, width: 250,:crop=>"fill" %>);">
-          <% else %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("entidadesocial.jpg")%>);">
-          <% end %>
-              <div class="card-description">
-                <h2><%= request.category %></h2>
-              </div>
-            <%= link_to "", request_path(request), class: 'card-link' %>
-            </div>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="card-trip" >
+        <%= image_tag "entidadesocial" %>
+        <div class="card-trip-infos">
+          <div>
+            <h2>Entidade:</h2>
+            <p><%= current_user.entity_name %></p>
+          </div>
+          <div>
+            <h2>Tipo da entidade:</h2>
+            <p><%= current_user.entity_type %></p>
+          </div>
         </div>
-      <% end %>
-    </div>  
+      </div>
+    </div>
+  <%# FIM DO CARD DA ENTIDADE %>
+    <div class="col-8">
+      <table class="table table-bordered table-striped">
+          <thead class="thead-light text-center">
+            <tr>
+              <th scope="col">Categoria</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Status</th>
+              <th scope="col">Ação</th>
+            </tr>
+          </thead>
+          <% current_user.requests.each do |request| %>
+              <tr>
+                <td class="text-center"><%= request.category.name.capitalize %></td>
+                <td class="text-center"><%= request.quantity %></td>
+                <% if request.status == 'Em analise'%>
+                  <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>
+                <% end %>
+                <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
+              </tr>
+          <% end %> 
+        </table>
+        <a class="btn btn-primary" href="<%= new_request_path %>">Novo pedido</a>
+    </div>
   </div>
-
 </div>
