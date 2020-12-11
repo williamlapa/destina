@@ -6,8 +6,6 @@
     <%= f.input :category_id, :label => "Categoria", as: :radio_buttons, collection: @categories, wrapper: :vertical_collection_inline %>
     <%= f.input :description, as: :text, :label => "Descrição" %>
     <%= f.input :quantity, :label => "Quantitade" %>
-    <%= f.input :legal_framework, :label => "Tipo Entidade", as: :radio_buttons, collection: ["Orgão Público", "Entidades Sociais"] %>
-    <%#= f.input :photo, :label => "Foto ou Logo Entidade (opcional)", as: :file %>
   </div>  
 
   <div class="form-actions">
