@@ -6,8 +6,15 @@
 
 <div class="container d-flex">
   <div class="container">
+  <%# INSERIR AQUI O CARD DA ENTIDADE COM LOGO E AVATAR DO SOLICITANTE %>
+  <%# A IDEIA É QUE O CARD FIQUE AO LADO DAS REQUISIÇÕES %>
+  </div>
+
+  <div class="container">
     <div class="row">
-      <% @requests.each do |request| %>
+    <%# INSERIR AQUI AS REQUISIÇÕES EMPILHADAS LINHA A LINHA %>
+    <%# CADA REQUISIÇÃO TERÁ O SEU STATUS AO LADO (ENVIADO, PENDENTE, FINALIZADO, EM ANÁLISE) %>
+     <% @requests.each do |request| %>
         <div class="col-12 col-md-6 col-lg-6">
           <% if request.photo.attached? %>
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path request.photo.key, height: 200, width: 250,:crop=>"fill" %>);">
