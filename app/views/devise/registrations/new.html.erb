@@ -1,13 +1,25 @@
-<div class="container col-xs-12 col-sm-6 col-sm-offset-6">
-  <h2 class="text-center">Preencha os dados do usuário</h2>
+<div class="container col-xs-12 col-sm-6 col-sm-offset-6 mt-3">
+  <h2 class="text-center">Cadastrar entidade ou órgão</h2>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :cpf, label: 'CPF',
+      <%= f.input :cnpj, label: 'CNPJ da entidade ou órgão',
+                  required: true,
+                  placeholder: "14 dígitos - digite somente números",
+                  input_html: { autocomplete: "cnpj" } %>
+      <%= f.input :entity_name, label: 'Nome da entidade ou órgão',
+                  required: true,
+                  input_html: { autocomplete: "entity-name" } %>
+      <%= f.input :entity_type, as: :select, collection: ['Órgão Público', 'Entidade Social', 'RFB'], label: 'Tipo de entidade ou órgão',
+                  required: true %>
+      <%= f.input :address, label: 'Endereço da entidade ou órgão',
+                  required: true,
+                  input_html: { autocomplete: "entity-type" } %>
+      <%= f.input :cpf, label: 'CPF responsável legal',
                   required: true,
                   autofocus: true,
-                  hint: ("Somente números - #{@minimum_cpf_length} caracteres" if @minimum_cpf_length),
+                  placeholder: "11 dígitos - digite somente números",
                   input_html: { autocomplete: "cpf" } %>
       <%= f.input :first_name, label: 'Nome',
                   required: true,
@@ -15,18 +27,6 @@
       <%= f.input :last_name, label: 'Sobrenome',
                   required: true,
                   input_html: { autocomplete: "last-name" } %>
-      <%= f.input :cnpj, label: 'CNPJ',
-                  required: true,
-                  hint: ("Somente números - #{@minimum_cnpj_length} caracteres" if @minimum_cnpj_length),
-                  input_html: { autocomplete: "cnpj" } %>
-      <%= f.input :entity_name, label: 'Nome da entidade ou órgão',
-                  required: true,
-                  input_html: { autocomplete: "entity-name" } %>
-      <%= f.input :entity_type, label: 'Tipo de entidade ou órgão',
-                  required: true %>
-      <%= f.input :address, label: 'Endereço da entidade ou órgão',
-                  required: true,
-                  input_html: { autocomplete: "entity-type" } %>
       <%= f.input :email, label: 'E-mail',
                   required: true,
                   input_html: { autocomplete: "email" }%>
@@ -34,10 +34,10 @@
                   required: true,
                   hint: ("Mínimo de #{@minimum_password_length} caracteres" if @minimum_password_length),
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation, label: 'Confirme sua senha',
+      <%= f.input :password_confirmation, label: 'Repita sua senha',
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :photo, as: :file, label: 'Incluir imagem' %>
+      <%= f.input :photo, as: :file, label: 'Incluir sua imagem ou da entidade ou órgão (opcional)' %>
     </div>
 
     <div class="form-actions">
