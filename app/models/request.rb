@@ -6,4 +6,9 @@ class Request < ApplicationRecord
   has_one_attached :photo
   STATUS = ['Rejeitado', 'Em analise', 'Aprovado']
   validates :status, inclusion: { in: STATUS }
+
+  def available_products
+    self.category.products.where(status: "Disponível")
+  end
+
 end

@@ -10,6 +10,8 @@ class RequestsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @products = @request.available_products
   end
 
   def new
