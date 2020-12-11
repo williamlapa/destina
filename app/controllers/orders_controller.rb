@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @order.request = @request
     @order.product = @product
     if @order.save
-      render order_path(@order)
+      redirect_to products_path, notice: 'Ordem criada com sucesso.'
     else
       render :new
     end
