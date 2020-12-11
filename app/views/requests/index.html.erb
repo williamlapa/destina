@@ -21,13 +21,14 @@
         </div>
       </div>
     </div>
-  <%# FIM DO CARD DA ENTIDADE %>
+  
     <div class="col-8">
       <table class="table table-bordered table-striped">
           <thead class="thead-light text-center">
             <tr>
               <th scope="col">Categoria</th>
               <th scope="col">Quantidade</th>
+              <th scope="col">Data Pedido</th>
               <th scope="col">Status</th>
               <th scope="col">Ação</th>
             </tr>
@@ -36,10 +37,11 @@
               <tr>
                 <td class="text-center"><%= request.category.name.capitalize %></td>
                 <td class="text-center"><%= request.quantity %></td>
+                <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
                 <% if request.status == 'Em analise'%>
-                  <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>
+                  <td class="text-center"><i class="fas fa-pause-circle" ></i><%= request.status %></td>
                 <% end %>
-                <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
+                <td class="text-center"><%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: 'fas fa-trash', style: 'color:black' %></td>
               </tr>
           <% end %> 
         </table>
