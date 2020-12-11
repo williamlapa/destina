@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
 
   def index
+    @requests = Request.all
     # @requests = policy_scope(Request)
   end
 
@@ -10,7 +11,8 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
-    @category = Category.new
+    # @category = Category.new
+    @categories = Category.order("name ASC")
     # authorize @request
   end
 
@@ -20,6 +22,8 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @request.user_id = current_user.id
+    @request.status = "pendente"
+    # @request.category = Category.find(params[:category])
     # authorize @request
 
     if @request.save
@@ -50,6 +54,6 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:description, :quantity, :status, :legal_framework)
+    params.require(:request).permit(:description, :quantity, :status, :legal_framework, :category_id, :photo)
   end
 end
