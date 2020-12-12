@@ -20,7 +20,8 @@
               <td class="text-center"><%= request.description %></td>
               <td class="text-center"><%= request.quantity %></td>
               <td class="text-center"><%= request.status %></td>
-              <td class="text-center"><%= link_to 'Consultar Produtos', request_products_path(request), class: 'btn btn-outline-primary' %></td>
+              <td class="text-center"><%= link_to 'Consultar Produtos', request_products_path(request.available_products), class: 'btn btn-outline-primary' %></td>
+              <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/requests/#{request.id}/products?query=#{request.category.name}&button=" %>">Consultar Produtos</a></td>
               <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
             </tr>
           <% end %> 
