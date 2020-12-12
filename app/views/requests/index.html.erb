@@ -39,9 +39,16 @@
                 <td class="text-center"><%= request.quantity %></td>
                 <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
                 <% if request.status == 'Em analise'%>
-                  <td class="text-center"><i class="fas fa-pause-circle" ></i><%= request.status %></td>
+                  <td class="text-center"><i class="fa fa-spinner fa-spin fa-1x fa-fw" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+                <% elsif request.status == 'Aprovado' %>
+                  <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i>><strong><%= request.status %></strong></td>
+                <% elsif request.status == 'Rejeitado' %>
+                  <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i></i>><strong><%= request.status %></strong></td>
                 <% end %>
-                <td class="text-center"><%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: 'fas fa-trash', style: 'color:black' %></td>
+                <td class="text-center">
+                  <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fa fa-trash" %>
+                </td>
+
               </tr>
           <% end %> 
         </table>
