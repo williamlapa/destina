@@ -11,4 +11,10 @@ class RequestMailerPreview < ActionMailer::Preview
     # This is how you pass value to params[:user] inside mailer definition!
     RequestMailer.newrequest(request)
   end
+
+  def docs
+    request = Request.first
+    RequestMailer.docs(request)
+    # This will render a view in `app/views/request_mailer`!
+  end
 end

@@ -1,0 +1,16 @@
+<%= image_tag attachments['logo.png'].url, height: '40', width: '40' %>
+<div class="col-4">
+
+<p>Olá <strong><%= @request.user.first_name.capitalize %> <%= @request.user.first_name.capitalize %></strong> !</p>
+
+<p>Conforme solicitado, a documentação necessária para entrega da mercadoria é a seguinte: </p>
+
+<%= image_tag attachments['docs.doc'].url, alt: "ANEXAR DOC" %>
+
+<p>Solicitamos que abra um processo processo digital, anexando ofício e documentos nos termos da orientação abaixo:</p>
+
+
+
+<p>A Receita Federal do Brasil agradece pelo seu contato!</p>
+
+</div>

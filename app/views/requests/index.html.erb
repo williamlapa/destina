@@ -47,6 +47,11 @@
                 <% end %>
                 <td class="text-center">
                   <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fa fa-trash" %>
+                  <% if request.status == 'Aprovado'%> 
+                    <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fas fa-envelope-open-text" %>
+                  <% else %>
+                    <i class="fas fa-envelope"></i>
+                  <% end %>
                 </td>
 
               </tr>
