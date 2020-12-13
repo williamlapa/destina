@@ -8,4 +8,13 @@ class User < ApplicationRecord
   validates :cpf, :first_name, :last_name, :cnpj, :address, :entity_type, :entity_name, presence: true
   validates :cpf, length: { is: 11 }
   validates :cnpj, length: { is: 14 }
+
+  # rotina para gerar email apos criacao de novo usuario
+  after_create :send_welcome_email
+
+  private
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome.deliver_now
+  end
 end
