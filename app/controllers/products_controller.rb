@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     if params[:query].present?
       @products = Product.includes(:photo_attachment, :category).search_by_category_name_description_and_address(params[:query])
     elsif params[:request_id].present?
-      @products = Request.find(params[:request_id]).available_products.includes(:photo_attachment, :category)
+      @products = Request.find(params[:request_id]).available_products.includes(:photo_attachment)
     else
       @products = Product.all.includes(:photo_attachment, :category)
     end
@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.includes(:photo_attachment, :category).find(params[:id])
+    @product = Product.includes(:photo_attachment).find(params[:id])
   end
 
   def product_params
