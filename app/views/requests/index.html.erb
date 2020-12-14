@@ -98,6 +98,7 @@
                   <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% end %>
                 <td class="text-center">
+                  <%= link_to '', edit_request_path(request), class: "fa fa-edit" %>
                   <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash" %>
                   <% if request.status == 'Aprovado'%> 
                     <%= link_to '', request_path(request), class: "fas fa-envelope-open-text" %>
