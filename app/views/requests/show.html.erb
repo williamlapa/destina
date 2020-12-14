@@ -1,9 +1,9 @@
 <% if current_user.role == 'RFB' %>
   <div class="container">
     <h2 class="text-center">Lista de requisições da entidade ou órgão</h2>
-    <p><strong>CNPJ:</strong> <%= @user.entity_name %></p>
-    <p><strong>Nome empresarial:</strong> <%= @user.cnpj %></p>
-    <div class="row justify-content-left align-items-center">  
+    <p><strong>Nome empresarial:</strong> <%= @user.entity_name %></p>
+    <p><strong>CNPJ:</strong> <%= @user.cnpj %></p>
+    <div class="row justify-content-left align-items-center">
       <table class="table table-bordered table-striped">
         <thead class="thead-light text-center">
           <tr>
@@ -20,6 +20,7 @@
             <tr>
               <td class="text-center"><%= request.id %></td>
               <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
+              <!-- Category retornando errado -->
               <td class="text-center"><%= request.category.name %></td>
               <td class="text-center"><%= request.description %></td>
               <td class="text-center"><%= request.quantity %></td>
@@ -33,11 +34,11 @@
               <td class="text-center"><%= link_to 'Consultar Produtos', request_products_path(params[:id]), class: 'btn btn-outline-primary' %></td>
               <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: 'btn btn-outline-danger' %></td>
             </tr>
-          <% end %> 
+          <% end %>
       </table>
     </div>
     <div style="min-height: 42vh;">
-    <%= link_to 'Voltar', :back %> 
+    <%= link_to 'Voltar', :back %>
     </div>
   </div>
 <% else %>
