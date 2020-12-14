@@ -12,16 +12,16 @@
       <% if user_signed_in? %>
         <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Requerimentos
+            Requisições
           </a>
           <% if current_user.role == 'RFB' %>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="<%= requests_path %>">Consultar requerimentos</a>
+              <a class="dropdown-item" href="<%= requests_path %>">Consultar requisições</a>
             </div>
           <% else %>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="<%= requests_path %>">Consultar requerimentos</a>
-              <a class="dropdown-item" href="<%= new_request_path %>">Criar requerimento</a>
+              <a class="dropdown-item" href="<%= requests_path %>">Consultar requisições</a>
+              <a class="dropdown-item" href="<%= new_request_path %>">Criar requisição</a>
             </div>
             <% end %>
         </li>
@@ -61,12 +61,12 @@
           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <% if current_user.role == 'RFB' %>
-              <%= link_to "Requerimentos", requests_path, class: "dropdown-item" %>
+              <%= link_to "Requisições", requests_path, class: "dropdown-item" %>
               <%= link_to "Produtos", products_path, class: "dropdown-item" %>
               <%= link_to "Ordens", orders_path, class: "dropdown-item" %>
             <% else %>
-              <%= link_to "Requerimentos", requests_path, class: "dropdown-item" %>
-              <%= link_to "Criar requerimento", new_request_path, class: "dropdown-item" %>
+              <%= link_to "Requisições", requests_path, class: "dropdown-item" %>
+              <%= link_to "Criar requisição", new_request_path, class: "dropdown-item" %>
             <% end %>
             <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>

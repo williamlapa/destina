@@ -6,7 +6,7 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <p><em> Requerimento de </em> <%= User.find(@request[:user_id]).entity_name %>: <%= @request[:description] %></p>
+    <p><em> Requisição de </em> <%= User.find(@request[:user_id]).entity_name %>: <%= @request[:description] %></p>
     <p><em> Produto: </em><%= @product[:description] %></p>
     <p><em> Categoria: </em><%= Category.find(@product[:category_id]).name %> </p>
     <%= f.input :status, as: :select, collection: ['Reservado', 'Aguarda Documentos', 'Entregue'] %>

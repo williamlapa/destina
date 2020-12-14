@@ -48,7 +48,7 @@
             <td class="text-center"><%= order.request.user.cnpj %></td>
             <td class="text-center"><%= order.request.quantity %></td>
             <td class="text-center"><%= order.request.user_id %></td>
-            <td class="text-center"><%= link_to 'Excluir', order_path(order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta reserva?'}, class: 'btn btn-outline-danger' %></td>
+            <td class="text-center"><%= link_to 'Excluir', order_path(order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta ordem?'}, class: 'btn btn-outline-danger' %></td>
           </tr>
         <% end %> 
     </table>
