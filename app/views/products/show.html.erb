@@ -13,7 +13,7 @@
       <% end %>
     </div>
     <div class="container m-0-auto">
-      <%= link_to 'Voltar', products_path %> |
+      <%= link_to 'Voltar', :back %> |
       <%= link_to 'Editar', edit_product_path(@product) %> |
       <%= link_to 'Apagar', product_path(@product), method: :delete, data: { confirm: 'Tem certeza que você quer excluir este produto?'} %> 
     </div>
@@ -26,7 +26,8 @@
     <p><strong>Quantidade:</strong> <%= @product.quantity %></p>
     <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
     <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
-    <a class="btn btn-primary" href="<%=  %>">Gerar ordem</a>
+    <a class="btn btn-outline-primary" href="<%= "/requests/#{@request.id}/products/#{@product.id}/orders/new" %>">Gerar ordem</a>
+    <!--a class="btn btn-primary" href="<%=  %>">Gerar ordem</a-->
   </div>
 
   <div>
@@ -43,10 +44,10 @@
       <% @product.orders.each do |order| %>
           <tr>
             <td class="text-center"><%= order.created_at.strftime("%d/%m/%Y") %></td>
-            <td class="text-center"><%= order.request.cnpj %></td>
-            <td class="text-center"><%= order.product.quantity %></td>
-            <td class="text-center"><%= request.user_id %></td>
-            <td class="text-center"><%= link_to 'Cancelar', order_path(order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta reserva?'}, class: 'btn btn-outline-danger' %></td>
+            <td class="text-center"><%= order.request.user.cnpj %></td>
+            <td class="text-center"><%= order.request.quantity %></td>
+            <td class="text-center"><%= order.request.user_id %></td>
+            <td class="text-center"><%= link_to 'Excluir', order_path(order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta reserva?'}, class: 'btn btn-outline-danger' %></td>
           </tr>
         <% end %> 
     </table>

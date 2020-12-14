@@ -1,21 +1,18 @@
 <div class="container">
-  <h2 class="text-center">Cadastrar Ordem</h2>
+  <h2 class="text-center">Atualizar Ordem</h2>
     <!--%= render 'form', order: @order %-->
   <%= simple_form_for([@request, @product, @order]) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
   <div class="form-inputs">
-    <p><em> Requerimento de </em> <%= User.find(@request[:user_id]).entity_name %>: <%= @request[:description] %></p>
-    <p><em> Produto: </em><%= @product[:description] %></p>
-    <p><em> Categoria: </em><%= Category.find(@product[:category_id]).name %> </p>
+    <p><em> Requerimento de </em> <%= @order.request.user.entity_name %>: <%= @order.request.description %></p>
+    <p><em> Produto: </em><%= @order.product.description %></p>
+    <p><em> Categoria: </em><%= @order.product.category.name %> </p>
     <%= f.input :status, as: :select, collection: ['Reservado', 'Aguarda Documentos', 'Entregue'] %>
   </div>
-
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary' %>
   </div>
   <% end %>
-
-  <%= link_to 'Voltar', :back %>
+  <%= link_to 'Página Inicial', orders_path %>
 </div>
