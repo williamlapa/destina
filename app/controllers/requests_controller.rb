@@ -3,9 +3,17 @@ class RequestsController < ApplicationController
 
   def index
     if current_user.role == 'RFB'
-      @requests = Request.all.includes(:category, :user).order("created_at DESC")
+      if params[:query].present?
+        @requests = Request.includes(:category, :user).search_by_category_description_entity_name_and_cnpj(params[:query])
+      else
+        @requests = Request.all.includes(:category, :user).order("created_at DESC")
+      end
     else
-      @requests = Request.includes(:category, :user).where(user_id: current_user)
+      if params[:query].present?
+        @requests = Request.includes(:category, :user).search_by_category_description_entity_name_and_cnpj(params[:query]).where(user_id: current_user)
+      else
+        @requests = Request.includes(:category, :user).where(user_id: current_user)
+      end
     end
   end
 

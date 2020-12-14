@@ -11,4 +11,14 @@ class Request < ApplicationRecord
     self.category.products.where(status: "Disponível")
   end
 
+  include PgSearch::Model
+
+  pg_search_scope :search_by_category_description_entity_name_and_cnpj,
+                  against: %i[entity_name cnpj description],
+                  associated_against: {
+                    category: [:name]
+                  },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

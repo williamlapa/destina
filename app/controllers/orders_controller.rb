@@ -19,6 +19,8 @@ class OrdersController < ApplicationController
     else
       render :new
     end
+    @request.update_attributes(status: (@request.status = "Aprovado"))
+    @product.update_attributes(quantity: (@product.quantity - @request.quantity))
   end
 
   def new
