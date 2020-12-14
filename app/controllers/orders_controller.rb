@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.request = @request
     @order.product = @product
+    @order.user_id = current_user.id
     if @order.save
       redirect_to orders_path, notice: 'Ordem criada com sucesso.'
     else
@@ -38,7 +39,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:request_id, :product_id, :status)
+    params.require(:order).permit(:request_id, :product_id, :status, :user_id)
   end
 
   def set_request_product
