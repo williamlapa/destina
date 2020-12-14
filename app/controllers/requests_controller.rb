@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
     if current_user.role == 'RFB'
       @requests = Request.all.includes(:category, :user)
     else
-      @requests = Request..includes(:category).where(user_id: current_user)
+      @requests = Request.includes(:category, :user).where(user_id: current_user)
     end
   end
 
