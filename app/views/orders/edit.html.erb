@@ -8,7 +8,7 @@
     <p><em> Requerimento de </em> <%= @order.request.user.entity_name %>: <%= @order.request.description %></p>
     <p><em> Produto: </em><%= @order.product.description %></p>
     <p><em> Categoria: </em><%= @order.product.category.name %> </p>
-    <%= f.input :status, input_html: { autocomplete: 'reservado' }%>
+    <%= f.input :status, as: :select, collection: ['Reservado', 'Aguarda Documentos', 'Entregue'] %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary' %>
