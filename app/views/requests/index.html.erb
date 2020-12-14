@@ -1,19 +1,21 @@
 <div class="container d-flex justify-content-around">
   <div class="justify-content-center">
-    <h1>Lista de requerimentos</h1>
+    <h1>Requisições</h1>
   </div>
 </div>
 <div class="container">
-  <div class="mt-2 col-6">
-    <%= simple_form_for :search, url: requests_path, method: :get do |f| %>
-      <div class="search-form-control form-group">
-        <input class="form-control string required" type="text" name="query" id="query" placeholder="Encontrar uma requisição" />
-        <button name="button" type="submit" class="btn btn-flat" >
-          <i class="fas fa-search"></i>Pesquisar
-        </button>
-      </div>
-    <% end %>
-  </div>
+  <% if current_user.role == 'RFB' %>
+    <div class="mt-2 col-6">
+      <%= simple_form_for :search, url: requests_path, method: :get do |f| %>
+        <div class="search-form-control form-group">
+          <input class="form-control string required" type="text" name="query" id="query"/>
+          <button name="button" type="submit" class="btn btn-flat" >
+            <i class="fas fa-search"></i>Pesquisar
+          </button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
   <div class="row">
     <% if current_user.role == 'RFB' %>
       <table class="table table-bordered table-striped">
@@ -48,7 +50,7 @@
             <% end %>
             <div>
               <td class="text-center"><%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %></td>
-              <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
+              <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: 'btn btn-outline-danger' %></td>
             </div>
           </tr>
         <% end %>
@@ -96,6 +98,7 @@
                   <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% end %>
                 <td class="text-center">
+                  <%= link_to '', edit_request_path(request), class: "fa fa-edit" %>
                   <% if request.status == 'Aprovado'%> 
                     <button type="button" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-envelope-open-text" aria-hidden="true"></i></button>
                   <% else %>
@@ -106,7 +109,7 @@
               </tr>
           <% end %> 
         </table>
-        <a class="btn btn-primary" href="<%= new_request_path %>">Novo pedido</a>
+        <a class="btn btn-primary" href="<%= new_request_path %>">Nova requisição</a>
       </div>
     <% end %>
   </div>
