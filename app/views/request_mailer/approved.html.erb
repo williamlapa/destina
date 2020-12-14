@@ -1,0 +1,31 @@
+<%= image_tag attachments['logo.png'].url, height: '40', width: '40' %>
+<p>Olá <strong><%= @request.user.first_name.capitalize %> <%= @request.user.last_name.capitalize %></strong> !</p>
+
+<p>Após análise do estoque de mercadorias apreendidas pela Receita Federal do Brasil, verificamos que a mercadoria abaixo solicitada encontra-se disponível. </p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <table class="table table-bordered table-striped">
+            <tr>
+              <th scope="col">Categoria do pedido:</th>
+              <td class="text-left"><%= @request.category.name.capitalize  %></td>
+            </tr>
+            <tr>
+              <th scope="col">Data de criação :</th>
+              <td class="text-center"><%= @request.user.created_at.strftime("%d/%m/%Y")%></td>
+            </tr>
+            <tr>
+              <th scope="col">Número do pedido</th>
+              <td class="text-center"><%= @request.id %></td>
+            </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<p>Solicitamos que abra um processo processo digital, anexando ofício e documentos nos termos da orientação abaixo:</p>
+
+
+
+<p>A Receita Federal do Brasil agradece pelo seu contato!</p>

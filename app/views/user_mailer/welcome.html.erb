@@ -1,0 +1,35 @@
+<%= image_tag attachments['logo.png'].url, height: '40', width: '40' %>
+
+<p>Olá <strong><%= @user.first_name.capitalize %> <%= @user.first_name.capitalize %></strong> !</p>
+
+<p>Bem-vindo(a) ao <strong>Portal de Doações Sociais</strong> da <strong>Receita Federal do Brasil.</strong></p>
+
+<p>Esta mensagem confirma que em você criou uma conta com os seguintes dados:</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <table class="table table-bordered table-striped">
+            <tr>
+              <th scope="col">Nome da entidade</th>
+              <td class="text-left"><%= @user.entity_name.capitalize %></td>
+            </tr>
+            <tr>
+              <th scope="col">CNPJ :</th>
+              <td class="text-center"><%= @user.cnpj %></td>
+            </tr>
+            <tr>
+              <th scope="col">Data de criação :</th>
+              <td class="text-center"><%= @user.created_at.strftime("%d/%m/%Y")%></td>
+            </tr>
+            <tr>
+              <th scope="col">Tipo da entidade</th>
+              <td class="text-center"><%= @user.entity_type.capitalize %></td>
+            </tr>
+      </table>
+      <a class="btn btn-primary" href="<%= new_request_url %>">Novo pedido</a>
+    </div>
+  </div>
+</div>
+
+<p>A Receita Federal do Brasil agradece pelo seu contato!</p>
