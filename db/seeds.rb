@@ -1,30 +1,49 @@
-number = 0
+number = 10
 
-while number < 10
+# Cria um usuário da Receita para manipular as Ordens
+# Atende criterios de validacao do modelo e schema: email unico, cpf com 11 e cnpj com 14 digitos
+user = User.create(cpf: "12345678911",
+                   first_name: 'Servidor',
+                   last_name: 'publico',
+                   email: "Servidor.rfb@email.com",
+                   password: "123123",
+                   cnpj: "00000000000191",
+                   address: "Esplanada dos Ministérios, Ministério da Economia, 7o andar",
+                   entity_type: 'órgão público',
+                   role: 'RFB',
+                   entity_name: 'Ministerio da Economia')
+
+while number < 20
   rand_text = (0...5).map { ('a'..'z').to_a[rand(26)] }.join
-
-  roles = ['Receita Federal', 'Solicitante'].sample
   entity_type = ['organização da sociedade civil', 'órgão público'].sample
   entity_name = ['AACD', 'Exercito', 'Policia', 'Hospital'].sample
   categories = ['veiculo', 'computador', 'celular', 'vestuario', 'motocicleta', 'utilitario', 'brinquedo', 'jogo', 'acessorio', 'eletronico']
 
-  if roles == 'Receita Federal'
-    entity_type = 'órgão público'
-    entity_name = "Ministerio da Economia"
-  end
-
+# Cria 10 usuarios externos de entidades
+# Atende criterios de validacao do modelo e schema: email unico, cpf com 11 e cnpj com 14 digitos
   user = User.create(cpf: "123456789#{number}",
                      first_name: rand_text.capitalize,
                      last_name: rand_text.reverse,
-                     email: "a#{number + 1}@email.com",
+                     email: "a#{number + 123}@email.com",
                      password: "123123",
                      cnpj: "000000000001#{number + 1}",
                      address: "Rua #{rand_text.reverse.upcase}, Numero #{number}45",
                      entity_type: entity_type.capitalize,
-                     role: roles.capitalize,
+                     role: "Solicitante",
                      entity_name: entity_name)
 
-  category = Category.create(name: categories[number].capitalize)
+# Cria as 10 categorias
+  category = Category.create(name: categories[number - 10].capitalize)
+
+# cria 10 requisições
+  quant = (number - 10) * 2
+  request = Request.create(quantity: quant,
+                           status: "Em analise",
+                           description: "#{categories[number - 10].capitalize}",
+                           legal_framework: "Lei xxx de x/x/xxxx",
+                           user_id: "#{number - 10}",
+                           category_id: "#{number - 10}")
+
   number += 1
 end
 
