@@ -48,7 +48,9 @@
           <% end %>
         <span class="nav-link">
           <strong><%= "#{current_user.first_name}" %></strong>
-          <strong><%= " (#{current_user.role})" %></strong>
+          <% if current_user.role.present? %>
+            <strong><%= " (#{current_user.role})" %></strong>
+          <% end %>
         </span>
         </li>
         <li class="nav-item dropdown">
