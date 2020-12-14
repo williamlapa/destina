@@ -1,5 +1,5 @@
 class Request < ApplicationRecord
-  has_many :orders
+  has_many :orders, dependent: :destroy
   belongs_to :user
   belongs_to :category
   validates_presence_of :description, :quantity, :status

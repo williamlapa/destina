@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
 
   def index
     if current_user.role == 'RFB'
-      @requests = Request.all.includes(:category, :user)
+      @requests = Request.all.includes(:category, :user).order("created_at DESC")
     else
       @requests = Request.includes(:category, :user).where(user_id: current_user)
     end
