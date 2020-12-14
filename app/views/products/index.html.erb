@@ -1,44 +1,46 @@
-<div class="container d-flex justify-content-around">
-  <div class="mt-2 justify-content-center">
-    <h1>Produtos</h1>
-  </div>
-  <div class = mt-3>
-    <a class="nav-item nav-link btn btn-outline-secondary btn-sm" href="<%= new_product_path %>">Cadastrar Produto</a>
-  </div>
-  <div class="mt-2 col-6">
-    <%= simple_form_for :search, url: products_path, method: :get do |f| %>
-    <div class="search-form-control form-group">
-      <input class="form-control string required" type="text" name="query" id="query" placeholder="Encontrar um produto" />
-      <button name="button" type="submit" class="btn btn-flat" >
-          <i class="fas fa-search"></i>Pesquisar
-          </button>
+<% if current_user.role == 'RFB' %>
+  <div class="container d-flex justify-content-around">
+    <div class="mt-2 justify-content-center">
+      <h1>Produtos</h1>
     </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="container d-flex">
-  <div class="row">
-    <% @products.each do |product| %>
-      <div class="card" style="width: 17rem;">
-        <% if product.photo.attached? %>
-          <img src="<%= cl_image_path product.photo.key, height: 300, width: 400,:crop=>"fill" %>" class="card-img-top">
-        <% else %>
-          <img src="<%= image_url ("products.jpeg")%>" class="card-img-top">
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= product.category.name %></h5>
-          <h6><%= product.name %></h6>
-          <p class="card-text"><%= product.description %></p>
-          <p>Quantidade: <%= product.quantity %></p>
-          <% if params[:request_id].present? %>
-            <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}" %>">Ver produto</a>
-            <a class="btn btn-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}/orders/new" %>">Gerar ordem</a>
-          <% else %>
-            <a href="<%= product_path(product) %>" class="btn btn-outline-primary">Ver produto</a>
-          <% end %> 
-        </div>
+    <div class = mt-3>
+      <a class="nav-item nav-link btn btn-outline-secondary btn-sm" href="<%= new_product_path %>">Cadastrar Produto</a>
+    </div>
+    <div class="mt-2 col-6">
+      <%= simple_form_for :search, url: products_path, method: :get do |f| %>
+      <div class="search-form-control form-group">
+        <input class="form-control string required" type="text" name="query" id="query" placeholder="Encontrar um produto" />
+        <button name="button" type="submit" class="btn btn-flat" >
+            <i class="fas fa-search"></i>Pesquisar
+            </button>
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+
+  <div class="container d-flex">
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="card" style="width: 17rem;">
+          <% if product.photo.attached? %>
+            <img src="<%= cl_image_path product.photo.key, height: 300, width: 400,:crop=>"fill" %>" class="card-img-top">
+          <% else %>
+            <img src="<%= image_url ("products.jpeg")%>" class="card-img-top">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= product.category.name %></h5>
+            <h6><%= product.name %></h6>
+            <p class="card-text"><%= product.description %></p>
+            <p>Quantidade: <%= product.quantity %></p>
+            <% if params[:request_id].present? %>
+              <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}" %>">Ver produto</a>
+              <a class="btn btn-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}/orders/new" %>">Gerar ordem</a>
+            <% else %>
+              <a href="<%= product_path(product) %>" class="btn btn-outline-primary">Ver produto</a>
+            <% end %> 
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

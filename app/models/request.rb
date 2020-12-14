@@ -14,9 +14,10 @@ class Request < ApplicationRecord
   include PgSearch::Model
 
   pg_search_scope :search_by_category_description_entity_name_and_cnpj,
-                  against: %i[entity_name cnpj description],
+                  against: %i[description],
                   associated_against: {
-                    category: [:name]
+                    category: [:name],
+                    user: [:entity_name, :cnpj]
                   },
                   using: {
                     tsearch: { prefix: true }

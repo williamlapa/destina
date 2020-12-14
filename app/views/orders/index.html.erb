@@ -1,49 +1,38 @@
-<div class="container d-flex justify-content-around">
-  <div class="mt-2 justify-content-center">
-    <h1>Ordens</h1>
-  </div>
-  <div class = mt-3>
-    <a class="nav-item nav-link btn btn-outline-secondary btn-sm" href="<%=  %>">Cadastrar Ordem</a>
-  </div>
-  <div class="mt-2 col-6">
-    <%= simple_form_for :search, url: orders_path, method: :get do |f| %>
-    <div class="search-form-control form-group">
-      <input class="form-control string required" type="text" name="query" id="query" placeholder="Encontrar uma ordem" />
-      <button name="button" type="submit" class="btn btn-flat" >
-          <i class="fas fa-search"></i>Pesquisar
-          </button>
+<% if current_user.role == 'RFB' %>
+  <div class="container d-flex justify-content-around">
+    <div class="mt-2 justify-content-center">
+      <h1>Ordens</h1>
     </div>
-    <% end %>
   </div>
-</div>
 
-<div class="container d-flex">
-  <div class="container">
-    <div>
-      <table class="table table-bordered table-striped">
-        <thead class="thead-light text-center">
-          <tr>
-            <th scope="col">Data da ordem</th>
-            <th scope="col">CNPJ</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col">Situação</th>
-            <th scope="col">Usuário</th>
-            <th scope="col">Opção</th>
-          </tr>
-        </thead>
-        <% @orders.each do |order| %>
-          <tr>
-            <td class="text-center"><%= order.created_at.strftime("%d/%m/%Y") %></td>
-            <td class="text-center"><%= order.request.user.cnpj %></td>
-            <td class="text-center"><%= order.request.quantity %></td>
-            <td class="text-center"><%= order.status %></td>
-            <td class="text-center"><%= order.user.first_name %></td>
-            <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/requests/#{order.request_id}/products/#{order.product_id}/orders/#{order.id}" %>">Ordem</a></td>
-            <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/requests/#{order.request_id}" %>">Requerimento</a></td>
-            <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/products/#{order.product_id}" %>">Produto</a></td>
-          </tr>
-        <% end %> 
-      </table>
+  <div class="container d-flex">
+    <div class="container">
+      <div>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-light text-center">
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">CNPJ</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Situação</th>
+              <th scope="col">Usuário</th>
+              <th scope="col" colspan="3">Opções</th>
+            </tr>
+          </thead>
+          <% @orders.each do |order| %>
+            <tr>
+              <td class="text-center"><%= order.created_at.strftime("%d/%m/%Y") %></td>
+              <td class="text-center"><%= order.request.user.cnpj %></td>
+              <td class="text-center"><%= order.request.quantity %></td>
+              <td class="text-center"><%= order.status %></td>
+              <td class="text-center"><%= order.user.first_name %></td>
+              <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/requests/#{order.request_id}/products/#{order.product_id}/orders/#{order.id}" %>">Ordem</a></td>
+              <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/requests/#{order.request_id}" %>">Requisição</a></td>
+              <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/products/#{order.product_id}" %>">Produto</a></td>
+            </tr>
+          <% end %> 
+        </table>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

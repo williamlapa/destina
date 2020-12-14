@@ -28,6 +28,7 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    @categories = Category.order("name ASC")
   end
 
   def create
