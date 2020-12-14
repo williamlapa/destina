@@ -37,6 +37,7 @@
         <tr>
           <th scope="col">Data da ordem</th>
           <th scope="col">CNPJ</th>
+          <th scope="col">Entidade</th>
           <th scope="col">Quantidade</th>
           <th scope="col">Usuário</th>
           <th scope="col">Opção</th>
@@ -46,8 +47,9 @@
           <tr>
             <td class="text-center"><%= order.created_at.strftime("%d/%m/%Y") %></td>
             <td class="text-center"><%= order.request.user.cnpj %></td>
+            <td class="text-center"><%= order.request.user.entity_name %></td>
             <td class="text-center"><%= order.request.quantity %></td>
-            <td class="text-center"><%= order.request.user_id %></td>
+            <td class="text-center"><%= order.request.user.first_name %></td>
             <td class="text-center"><%= link_to 'Excluir', order_path(order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta ordem?'}, class: 'btn btn-outline-danger' %></td>
           </tr>
         <% end %> 
