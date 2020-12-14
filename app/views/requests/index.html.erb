@@ -3,8 +3,17 @@
     <h1>Lista de requerimentos</h1>
   </div>
 </div>
-
 <div class="container">
+  <div class="mt-2 col-6">
+    <%= simple_form_for :search, url: requests_path, method: :get do |f| %>
+      <div class="search-form-control form-group">
+        <input class="form-control string required" type="text" name="query" id="query" placeholder="Encontrar uma requisição" />
+        <button name="button" type="submit" class="btn btn-flat" >
+          <i class="fas fa-search"></i>Pesquisar
+        </button>
+      </div>
+    <% end %>
+  </div>
   <div class="row">
     <% if current_user.role == 'RFB' %>
       <table class="table table-bordered table-striped">
@@ -33,9 +42,9 @@
             <% if request.status == 'Em analise'%>
               <td class="text-center"><i class="fa fa-spinner fa-spin fa-1x fa-fw" aria-hidden="true"></i><strong><%= request.status %></strong></td>
             <% elsif request.status == 'Aprovado' %>
-              <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i>><strong><%= request.status %></strong></td>
+              <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i><strong><%= request.status %></strong></td>
             <% elsif request.status == 'Rejeitado' %>
-              <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i></i>><strong><%= request.status %></strong></td>
+              <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
             <% end %>
             <div>
               <td class="text-center"><%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %></td>
@@ -80,9 +89,9 @@
                 <% if request.status == 'Em analise'%>
                   <td class="text-center"><i class="fa fa-spinner fa-spin fa-1x fa-fw" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% elsif request.status == 'Aprovado' %>
-                  <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i>><strong><%= request.status %></strong></td>
+                  <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% elsif request.status == 'Rejeitado' %>
-                  <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i></i>><strong><%= request.status %></strong></td>
+                  <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% end %>
                 <td class="text-center">
                   <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fa fa-trash" %>
