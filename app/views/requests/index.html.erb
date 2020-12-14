@@ -65,6 +65,7 @@
         <table class="table table-bordered table-striped">
           <thead class="thead-light text-center">
             <tr>
+              <th scope="col">Nº</th>
               <th scope="col">Categoria</th>
               <th scope="col">Quantidade</th>
               <th scope="col">Data Pedido</th>
@@ -74,6 +75,7 @@
           </thead>
           <% current_user.requests.each do |request| %>
               <tr>
+                <td class="text-center"><%= request.id %></td>
                 <td class="text-center"><%= request.category.name.capitalize %></td>
                 <td class="text-center"><%= request.quantity %></td>
                 <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
