@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
+    @request = Request.find(params[:request_id])
     if params[:query].present?
       @products = Product.search_by_category_name_description_and_address(params[:query])
     else
@@ -10,6 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @request = Request.find(params[:request_id])
   end
 
   def new

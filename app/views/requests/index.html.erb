@@ -10,9 +10,11 @@
       <table class="table table-bordered table-striped">
         <thead class="thead-light text-center">
           <tr>
+            <th scope="col">Nº</th>
             <th scope="col">CNPJ</th>
             <th scope="col">Entidade</th>
-            <th scope="col">Categoria produto</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Descrição</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Status</th>
             <th scope="col" colspan="2">Opções</th>
@@ -20,9 +22,11 @@
         </thead>
       <% @requests.each do |request| %>
         <tr>
+          <td class="text-center"><%= request.id %></td>
           <td class="text-center"><%= request.user.cnpj %></td>
           <td class="text-center"><%=request.user.entity_name %></td>
           <td class="text-center"><%= request.category.name.capitalize %></td>
+          <td class="text-center"><%= request.description %></td>
           <td class="text-center"><%= request.quantity %></td>
           <% if request.status == 'Em analise'%>
             <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>
@@ -54,7 +58,9 @@
         <table class="table table-bordered table-striped">
             <thead class="thead-light text-center">
               <tr>
+                <th scope="col">Nº</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Descrição</th>
                 <th scope="col">Quantidade</th>
                 <th scope="col">Status</th>
                 <th scope="col">Ação</th>
@@ -62,7 +68,9 @@
             </thead>
             <% current_user.requests.each do |request| %>
                 <tr>
+                  <td class="text-center"><%= request.id %></td>
                   <td class="text-center"><%= request.category.name.capitalize %></td>
+                  <td class="text-center"><%= request.description %></td>
                   <td class="text-center"><%= request.quantity %></td>
                   <% if request.status == 'Em analise'%>
                     <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>

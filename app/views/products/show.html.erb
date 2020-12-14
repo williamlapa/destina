@@ -26,6 +26,7 @@
     <p><strong>Quantidade:</strong> <%= @product.quantity %></p>
     <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
     <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
+    <a class="btn btn-outline-primary" href="<%= "/requests/#{@request.id}/products/#{@product.id}/orders/new" %>">Gerar ordem</a>
     <!--a class="btn btn-primary" href="<%=  %>">Gerar ordem</a-->
   </div>
 
