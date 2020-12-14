@@ -76,7 +76,7 @@
           <% current_user.requests.each do |request| %>
               <tr>
                 <td class="text-center"><%= request.id %></td>
-                <td class="text-center"><%= request.category.name.capitalize %></td>
+                <td class="text-center"><span data-tooltip=<%= request.description %>><%= request.category.name.capitalize %></span></td>
                 <td class="text-center"><%= request.quantity %></td>
                 <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
                 <% if request.status == 'Em analise'%>
@@ -89,7 +89,7 @@
                 <td class="text-center">
                   <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fa fa-trash" %>
                   <% if request.status == 'Aprovado'%> 
-                    <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fas fa-envelope-open-text" %>
+                    <%= link_to '', request_path(request), class: "fas fa-envelope-open-text" %>
                   <% else %>
                     <i class="fas fa-envelope"></i>
                   <% end %>

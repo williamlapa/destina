@@ -1,7 +1,7 @@
 <%= image_tag attachments['logo.png'].url, height: '40', width: '40' %>
 <p>Olá <strong><%= @request.user.first_name.capitalize %> <%= @request.user.last_name.capitalize %></strong> !</p>
 
-<p>Após análise do estoque de mercadorias apreendidas pela Receita Federal do Brasil, verificamos que a mercadoria abaixo solicitada encontra-se disponível. </p>
+<p>Após análise do estoque de mercadorias apreendidas pela Receita Federal do Brasil, verificamos que o pedido abaixo poderá ser atendido. </p>
 
 <div class="container">
   <div class="row">
@@ -28,11 +28,11 @@
 
 <p> 1 - Ofício destinado ao dirigente da respectiva unidade local da Receita Federal que jurisdiciona o município  da sede da entidade; ou ao Superintendente da respectiva Região Fiscal. </p>
 
-<p> 2 - Documentação necessária em anexo.</p>
+<p> 2 - Documentação em anexo.</p>
 <%= image_tag attachments['docs.doc'].url, alt: "ANEXAR DOC" %>
 
 <p> Os endereços das Unidades Centrais, regionais e locais da Receita Federal encontram-se no caminho: https://receita.economia.gov.br/sobre/institucional/quem-e-quem. </p>
 
 <p>O encaminhamento deve ser feito em até 30 (trinta) dias depois de notificada sob pena de a solicitação ser arquivada.</p>
 
-<p>A Receita Federal do Brasil agradece pelo seu contato!</p>
+<p>A <strong>Receita Federal do Brasil</strong> agradece pelo seu contato!</p>
