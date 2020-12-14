@@ -14,12 +14,16 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Requerimentos
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<%= requests_path %>">Consultar requerimentos</a>
-            <a class="dropdown-item" href="<%= new_request_path %>">Criar requerimento</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+          <% if current_user.role == 'RFB' %>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<%= requests_path %>">Consultar requerimentos</a>
+            </div>
+          <% else %>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<%= requests_path %>">Consultar requerimentos</a>
+              <a class="dropdown-item" href="<%= new_request_path %>">Criar requerimento</a>
+            </div>
+            <% end %>
         </li>
           <% if current_user.role == 'RFB' %>
             <li class="nav-item dropdown">
@@ -29,13 +33,24 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="<%= products_path %>">Consultar produtos</a>
                 <a class="dropdown-item" href="<%= new_product_path %>">Criar produto</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          <% end %>
+          <% if current_user.role == 'RFB' %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ordens
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<%= orders_path %>">Consultar ordens</a>
               </div>
             </li>
           <% end %>
         <span class="nav-link">
           <strong><%= "#{current_user.first_name}" %></strong>
+          <% if current_user.role.present? %>
+            <strong><%= " (#{current_user.role})" %></strong>
+          <% end %>
         </span>
         </li>
         <li class="nav-item dropdown">
@@ -45,11 +60,13 @@
             <%= image_tag "person-placeholder.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Requerimentos", requests_path, class: "dropdown-item" %>
-            <%= link_to "Criar requerimento", new_request_path, class: "dropdown-item" %>
             <% if current_user.role == 'RFB' %>
+              <%= link_to "Requerimentos", requests_path, class: "dropdown-item" %>
               <%= link_to "Produtos", products_path, class: "dropdown-item" %>
-              <%= link_to "Criar Produto", new_product_path, class: "dropdown-item" %>
+              <%= link_to "Ordens", orders_path, class: "dropdown-item" %>
+            <% else %>
+              <%= link_to "Requerimentos", requests_path, class: "dropdown-item" %>
+              <%= link_to "Criar requerimento", new_request_path, class: "dropdown-item" %>
             <% end %>
             <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>

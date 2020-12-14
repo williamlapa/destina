@@ -2,14 +2,16 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
+    @request = Request.find(params[:request_id])
     if params[:query].present?
-      @products = Product.search_by_category_name_description_and_address(params[:query])
+      @products = Product.includes(:photo_attachment, :category).search_by_category_name_description_and_address(params[:query])
     else
-      @products = Product.all
+      @products = Product.all.includes(:photo_attachment, :category)
     end
   end
 
   def show
+    @request = Request.find(params[:request_id])
   end
 
   def new
@@ -46,7 +48,7 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.includes(:photo_attachment, :category).find(params[:id])
   end
 
   def product_params

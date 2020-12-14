@@ -18,24 +18,24 @@
 </div>
 
 <div class="container d-flex">
-  <div class="container">
-    <div class="row">
-      <% @products.each do |product| %>
-        <div class="col-12 col-md-4 col-lg-3">
-          <% if product.photo.attached? %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path product.photo.key, height: 200, width: 250,:crop=>"fill" %>);">
-          <% else %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("depositoproducts.jpeg")%>);">
-          <% end %>
-              <div class="card-description">
-                <h2><%= product.name %></h2>
-                <h3><%= product.category.name %></h3>
-                <h3>Quantity: <%= product.quantity %></h3>
-              </div>
-            <%= link_to "", product_path(product), class: 'card-link' %>
-            </div>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="card" style="width: 17rem;">
+        <% if product.photo.attached? %>
+          <img src="<%= cl_image_path product.photo.key, height: 300, width: 400,:crop=>"fill" %>" class="card-img-top">
+        <% else %>
+          <img src="<%= image_url ("products.jpeg")%>" class="card-img-top">
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= product.category.name %></h5>
+          <h6><%= product.name %></h6>
+          <p class="card-text"><%= product.description %></p>
+          <p>Quantidade: <%= product.quantity %></p>
+          <!--a href="<%= request_products_path(@request.id,product.id) %>" class="btn btn-outline-primary">Ver produto</a-->
+          <a class="btn btn-outline-primary" href="<%= "/requests/#{@request.id}/products/#{product.id}" %>">Ver produto</a>
+          <a class="btn btn-primary" href="<%= "/requests/#{@request.id}/products/#{product.id}/orders/new" %>">Gerar ordem</a>
         </div>
-      <% end %>
-    </div>  
+      </div>
+    <% end %>
   </div>
 </div>

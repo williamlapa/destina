@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Detalhes da ordem <%= @order.id %> - pedido nº <%= @request.id %></h2>
+</div>
+
+<div class="container">
+  <div>
+    <p>Data da ordem: <%= @order.created_at.strftime("%d/%m/%Y") %></p>
+    <p>CNPJ: <%= @order.request.user.cnpj %></p>
+    <p>Nome empresarial: <%= @request.user.entity_name %></p>
+    <p>Categoria Produto: <%= @product.category.name %></p>
+    <p>Produto: <%= @product.name %></p>
+    <p>Quantidade: <%= @order.request.quantity %></p>
+    <p>Situação: <%= @order.status %></p>
+    <p>Usuário: <%= @order.request.user.first_name %></p>
+  </div>
+  <div class="container m-0-auto">
+    <%= link_to 'Voltar', orders_path %> |
+    <%= link_to 'Editar', edit_order_path(@order) %> |
+    <%= link_to 'Excluir', order_path(@order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta ordem?'}, class: 'btn btn-outline-danger' %>
+  </div>
+</div>  
