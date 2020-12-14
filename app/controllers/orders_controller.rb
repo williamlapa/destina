@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show edit update destroy]
 
   def index
-    @orders = Order.all
+    @orders = Order.all.includes(:request, :user, request: :user)
   end
 
   def show

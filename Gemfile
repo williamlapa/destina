@@ -63,6 +63,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Dot-env
 gem 'dotenv-rails', groups: [:development, :test]
+# verify memory use e need of includes
+gem 'bullet', group: 'development'
 
 # upload files
 gem 'cloudinary', '~> 1.16.0'

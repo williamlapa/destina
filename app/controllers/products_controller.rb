@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
   def index
     @request = Request.find(params[:request_id])
     if params[:query].present?
-      @products = Product.search_by_category_name_description_and_address(params[:query])
+      @products = Product.includes(:photo_attachment, :category).search_by_category_name_description_and_address(params[:query])
     else
-      @products = Product.all
+      @products = Product.all.includes(:photo_attachment, :category)
     end
   end
 
@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.includes(:photo_attachment, :category).find(params[:id])
   end
 
   def product_params

@@ -3,9 +3,9 @@ class RequestsController < ApplicationController
 
   def index
     if current_user.role == 'RFB'
-      @requests = Request.all
+      @requests = Request.all.includes(:category, :user)
     else
-      @requests = Request.where(user_id: current_user)
+      @requests = Request..includes(:category).where(user_id: current_user)
     end
   end
 
@@ -49,7 +49,7 @@ class RequestsController < ApplicationController
   private
 
   def set_request
-    @request = Request.find(params[:id])
+    @request = Request.includes(:category).find(params[:id])
   end
 
   def request_params
