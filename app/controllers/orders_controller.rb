@@ -1,12 +1,20 @@
 class OrdersController < ApplicationController
-  before_action :set_request_product
+  before_action :set_request_product, except: %i[index edit]
+  before_action :set_order, only: %i[show edit update destroy]
+
+  def index
+    @orders = Order.all
+  end
+
+  def show
+  end
 
   def create
     @order = Order.new(order_params)
     @order.request = @request
     @order.product = @product
     if @order.save
-      redirect_to products_path, notice: 'Ordem criada com sucesso.'
+      redirect_to orders_path, notice: 'Ordem criada com sucesso.'
     else
       render :new
     end
@@ -16,8 +24,15 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def edit
+  end
+
   def update
-    @order.update(order_params)
+    if @order.update(order_params)
+      redirect_to @order, notice: 'Ordem atualizada com sucesso.'
+    else
+      render :edit
+    end
   end
 
   private
@@ -29,5 +44,9 @@ class OrdersController < ApplicationController
   def set_request_product
     @request = Request.find(params[:request_id])
     @product = Product.find(params[:product_id])
+  end
+
+  def set_order
+    @order = Order.find(params[:id])
   end
 end

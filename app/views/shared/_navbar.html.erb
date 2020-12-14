@@ -22,8 +22,6 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%= requests_path %>">Consultar requerimentos</a>
               <a class="dropdown-item" href="<%= new_request_path %>">Criar requerimento</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
             </div>
             <% end %>
         </li>
@@ -35,8 +33,17 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="<%= products_path %>">Consultar produtos</a>
                 <a class="dropdown-item" href="<%= new_product_path %>">Criar produto</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          <% end %>
+          <% if current_user.role == 'RFB' %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ordens
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<%= orders_path %>">Consultar ordens</a>
+                <a class="dropdown-item" href="<%=  %>">Criar ordem</a>
               </div>
             </li>
           <% end %>
@@ -54,7 +61,7 @@
             <% if current_user.role == 'RFB' %>
               <%= link_to "Requerimentos", requests_path, class: "dropdown-item" %>
               <%= link_to "Produtos", products_path, class: "dropdown-item" %>
-              <%= link_to "Criar Produto", new_product_path, class: "dropdown-item" %>
+              <%= link_to "Ordens", orders_path, class: "dropdown-item" %>
             <% else %>
               <%= link_to "Requerimentos", requests_path, class: "dropdown-item" %>
               <%= link_to "Criar requerimento", new_request_path, class: "dropdown-item" %>

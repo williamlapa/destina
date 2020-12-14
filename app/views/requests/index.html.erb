@@ -29,7 +29,7 @@
           <% end %>
           <div>
             <td class="text-center"><%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %></td>
-            <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
+            <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
           </div>
         </tr>
       <% end %>
@@ -67,7 +67,7 @@
                   <% if request.status == 'Em analise'%>
                     <td class="text-center"><i class="fas fa-pause-circle"></i><%= request.status %></td>
                   <% end %>
-                  <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
+                  <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Are you sure you want to delete this request?'}, class: 'btn btn-outline-danger' %></td>
                 </tr>
             <% end %> 
           </table>
