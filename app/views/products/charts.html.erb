@@ -1,0 +1,20 @@
+<div class="container m-3">
+  <div class="d-flex justify-content-center align-items-center">
+    <h1 class='text-center m-4'>Gerenciais</h1>
+    <%= link_to 'Mercadorias', products_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="d-flex">
+    <div class='col-6 m-2'>
+      <h3 class='text-center m-2'>Usuários Cadastrados</h3>
+      <%= pie_chart User.group(:entity_type).count, legend: "bottom" %>
+    </div>
+    <div class='col-6 m-2'>
+      <h3 class='text-center'>Mercadorias em estoque</h3>
+      <%= bar_chart Product.group(:name).count %>
+    </div>
+  </div>
+    <div class='col-6 m-2'>
+      <h3 class='text-center'>Ordens</h3>
+      <%= column_chart Order.group(:status).count %>
+    </div>
+</div>

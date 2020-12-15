@@ -11,6 +11,9 @@ class ProductsController < ApplicationController
     end
   end
 
+  def charts
+  end
+
   def show
     @order = Request.find(params[:request_id]).order if params[:request_id].present?
   end

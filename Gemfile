@@ -68,5 +68,8 @@ gem 'bullet', group: 'development'
 # upload files
 gem 'cloudinary', '~> 1.16.0'
 
+# Dashboards
+gem "chartkick"
+
 # search
 gem 'pg_search', '~> 2.3.0'
