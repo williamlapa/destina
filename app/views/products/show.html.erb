@@ -80,10 +80,9 @@
     <div class="p-2">
       <p><strong>Categoria:</strong> <%= @product.category.name %></p>
       <p><strong>Descrição:</strong> <%= @product.description %></p>
-      <p><strong>Quantidade:</strong> <%= @product.quantity %></p>
-      <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
+      <p><strong>Quantidade:</strong> <%= @order.request.quantity %></p>
       <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
-      <%= link_to 'Confirmar aceitar', accept_path(@order), method: :patch, class:"btn btn-outline-primary" %>
+      <%= link_to 'Aceitar produtos', accept_path(@order), method: :patch, class:"btn btn-outline-primary" %>
     </div>
   <% end %>
 <% end %>
