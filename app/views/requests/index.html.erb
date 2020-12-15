@@ -103,8 +103,10 @@
                 <% else %>
                   <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% end %>
-                <% unless request.product.nil? || request.status != 'Aprovado' %>
+                <% if request.product.present? && request.status == 'Aprovado' %>
                   <td class="text-center"><%= link_to 'Aceitar', request_product_path(request, request.product) %></td>
+                <% elsif request.status == 'A retirar' %>
+                  <td class="text-center"><%= link_to 'Consultar', request_product_path(request, request.product) %></td>
                 <% else %>
                   <td></td>
                 <% end %>
