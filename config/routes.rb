@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       resources :orders, only: %i[new create show]
     end
   end
-  resources :products
+  resources :products do
+    get 'charts', on: :collection
+  end
   resources :categories, only: :index
   resources :orders, only: %i[index edit show update destroy]
 end

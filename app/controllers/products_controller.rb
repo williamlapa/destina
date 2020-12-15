@@ -11,6 +11,9 @@ class ProductsController < ApplicationController
     end
   end
 
+  def charts
+  end
+
   def show
   end
 
