@@ -1,18 +1,20 @@
 header.masthead {
   position: relative;
   background-color: $gray-800;
-  background: url('../img/bg-masthead.jpg') no-repeat center center;
+  // background: url('../img/bg-masthead.jpg') no-repeat center center;
   // @include background-cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+      // background-image: 'app/assets/images/banner_rfb_blur2.jpeg';
   .overlay {
     position: absolute;
-    background-color: $gray-900;
+    background-color: darkblue;
+
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
-    opacity: 0.3;
+    // opacity: 0.9;
   }
   h1 {
     font-size: 2rem;
