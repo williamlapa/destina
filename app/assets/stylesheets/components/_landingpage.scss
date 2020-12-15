@@ -20,8 +20,8 @@ h6 {
 
 header.masthead {
   position: relative;
-  background-color: #343a40;
-  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  // background-color: #343a40;
+  // background: url("../img/bg-masthead.jpg") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
@@ -29,12 +29,13 @@ header.masthead {
 
 header.masthead .overlay {
   position: absolute;
-  background-color: #212529;
+  background-color: darkblue;
+  // background-color: #212529;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  opacity: 0.3;
+  // opacity: 0.3;
 }
 
 header.masthead h1 {
@@ -67,60 +68,31 @@ header.masthead h1 {
 }
 
 .features-icons {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .features-icons .features-icons-item {
-  max-width: 20rem;
+  max-width: 15rem;
 }
 
 .features-icons .features-icons-item .features-icons-icon {
-  height: 7rem;
+  height: 6rem;
 }
 
 .features-icons .features-icons-item .features-icons-icon i {
-  font-size: 4.5rem;
+  font-size: 3rem;
 }
 
 .features-icons .features-icons-item:hover .features-icons-icon i {
-  font-size: 5rem;
+  font-size: 3.5rem;
 }
 
-.testimonials {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
 
-.testimonials .testimonial-item {
-  max-width: 18rem;
-}
 
-.testimonials .testimonial-item img {
-  max-width: 12rem;
-  box-shadow: 0px 5px 5px 0px #adb5bd;
-}
-
-.call-to-action {
-  position: relative;
-  background-color: #343a40;
-  background: url("../img/bg-masthead.jpg") no-repeat center center;
-  background-size: cover;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
-
-.call-to-action .overlay {
-  position: absolute;
-  background-color: #212529;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
 
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+

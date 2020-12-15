@@ -1,11 +1,12 @@
 .footer {
-  background: #F4F4F4;
   display: flex;
   align-items: center;
   justify-content: space-around;
   height: 100px;
   padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  color: white;
+  background: #010153;
+
   position: absolute;
   left: 0;
   bottom: 0;
@@ -17,15 +18,15 @@
   align-items: center;
 }
 .footer-links a {
-  color: black;
-  opacity: 0.15;
+  color: white;
+  opacity: 1;
   text-decoration: none;
   font-size: 32px;
   padding: 0px 10px;
 }
 .footer-links a:hover {
-  opacity: 1;
+  opacity: 0.5;
 }
 .footer .fa-hands {
-  color: blue;
+  color: white;
 }
