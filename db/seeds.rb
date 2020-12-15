@@ -75,14 +75,17 @@ while number < 20
   end
 
   quant = rand(2..10)
+  cat_id = categories.index(category) + 1
   request = Request.create(quantity: quant,
                            status: "Em analise",
                            description: "Nossa entidade precisa de #{quant} unidades de #{category.capitalize} da marca #{brand.capitalize}",
                            legal_framework: "Lei xxx de x/x/xxxx",
                            user_id: "#{number - 9}",
-                           category_id: "#{number - 9}")
+                           category_id: cat_id)
   # puts category
+  # puts cat_id
   # puts request.description
+  # puts request.category_id
   # puts request.user_id
   # puts cpf
   # puts cpf.class
