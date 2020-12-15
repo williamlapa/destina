@@ -1,9 +1,9 @@
 <% if current_user.role == 'RFB' %>
   <div class="container mt-3">
-    <h1 class="text-center">Editar produto</h1>
+    <h1 class="text-center">Editar mercadoria</h1>
 
     <%= render 'form', product: @product %>
     <%= link_to 'Cancelar', @product %> |
-    <%= link_to 'Ir para produtos', products_path %>
+    <%= link_to 'Mercadorias', products_path %>
   </div>
 <% end %>

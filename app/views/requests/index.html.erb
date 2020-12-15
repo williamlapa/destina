@@ -48,6 +48,8 @@
               <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i><strong><%= request.status %></strong></td>
             <% elsif request.status == 'Rejeitado' %>
               <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+            <% elsif request.status == 'A retirar' %>
+              <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
             <% end %>
             <div>
               <td class="text-center"><%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %></td>
@@ -80,7 +82,7 @@
               <th scope="col">Nº</th>
               <th scope="col">Categoria</th>
               <th scope="col">Quantidade</th>
-              <th scope="col">Data Pedido</th>
+              <th scope="col">Data Requisição</th>
               <th scope="col">Status</th>
               <th scope="col">Ordem</th>
               <th scope="col">Ação</th>
@@ -99,7 +101,7 @@
                 <% elsif request.status == 'Rejeitado' %>
                   <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% else %>
-                  <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+                  <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% end %>
                 <% unless request.product.nil? || request.status != 'Aprovado' %>
                   <td class="text-center"><%= link_to 'Aceitar', request_product_path(request, request.product) %></td>
@@ -114,7 +116,7 @@
                   <% else %>
                     <i class="fas fa-envelope"></i>
                   <% end %>
-                  <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fa fa-trash" %>
+                  <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash" %>
                 </td>
               </tr>
           <% end %>
