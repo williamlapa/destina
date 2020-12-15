@@ -36,8 +36,8 @@ class RequestsController < ApplicationController
     @request.user_id = current_user.id
     @request.status = "Em analise"
     if @request.save
-      mail = RequestMailer.with(request: @request).newrequest(@request)
-      mail.deliver_now
+      # mail = RequestMailer.with(request: @request).newrequest(@request)
+      # mail.deliver_now
       redirect_to requests_path, notice: 'Pedido criado com sucesso!'
     else
       render 'new'

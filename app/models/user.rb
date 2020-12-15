@@ -10,11 +10,11 @@ class User < ApplicationRecord
   validates :cnpj, length: { is: 14 }
 
   # rotina para gerar email apos criacao de novo usuario
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
-  private
+  # private
 
-  def send_welcome_email
-    UserMailer.with(user: self).welcome.deliver_now
-  end
+  # def send_welcome_email
+  #   UserMailer.with(user: self).welcome.deliver_now
+  # end
 end
