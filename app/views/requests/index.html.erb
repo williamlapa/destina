@@ -38,6 +38,7 @@
             <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
             <td class="text-center"><%= request.user.cnpj %></td>
             <td class="text-center"><%= request.user.entity_name %></td>
+            <!-- Category retornando errado -->
             <td class="text-center"><%= request.category.name.capitalize %></td>
             <td class="text-center"><%= request.description %></td>
             <td class="text-center"><%= request.quantity %></td>
@@ -99,7 +100,7 @@
                 <% end %>
                 <td class="text-center">
                   <%= link_to '', edit_request_path(request), class: "fa fa-edit" %>
-                  <% if request.status == 'Aprovado'%> 
+                  <% if request.status == 'Aprovado'%>
                     <button type="button" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-envelope-open-text" aria-hidden="true"></i></button>
                   <% else %>
                     <i class="fas fa-envelope"></i>
@@ -107,7 +108,7 @@
                   <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar o pedido?'}, class: "fa fa-trash" %>
                 </td>
               </tr>
-          <% end %> 
+          <% end %>
         </table>
         <a class="btn btn-primary" href="<%= new_request_path %>">Nova requisição</a>
       </div>
