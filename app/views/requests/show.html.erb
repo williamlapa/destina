@@ -1,5 +1,6 @@
 <% if current_user.role == 'RFB' %>
   <div class="container">
+
     <h2><strong>Nome empresarial:</strong> <%= @user.entity_name %></h2>
     <h2><strong>CNPJ:</strong> <%= @user.cnpj %></h2>
     <h3 class="text-center">Detalhes da requisição nº <%= @request.id %></h3>
@@ -31,6 +32,7 @@
             <tr>
               <td class="text-center"><%= request.id %></td>
               <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
+              <!-- Category retornando errado -->
               <td class="text-center"><%= request.category.name %></td>
               <td class="text-center"><%= request.description %></td>
               <td class="text-center"><%= request.quantity %></td>
@@ -44,14 +46,15 @@
               <td class="text-center"><%= link_to 'Consultar Produtos', request_products_path(params[:id]), class: 'btn btn-outline-primary' %></td>
               <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: 'btn btn-outline-danger' %></td>
             </tr>
-          <% end %> 
+          <% end %>
       </table>
     </div>
     <div style="min-height: 42vh;">
-    <%= link_to 'Voltar', :back %> 
+    <%= link_to 'Voltar', :back %>
     </div>
   </div>
 <% else %>
+
   <div class="container">
     <h2 class="text-center">Detalhes da requisição nº <%= @request.id %></h2>
     <p><strong>CNPJ:</strong> <%= @user.entity_name %></p>
@@ -64,3 +67,4 @@
     <%= link_to 'Voltar', :back %>
   </div>
 <% end %>
+
