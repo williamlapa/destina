@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :products
   resources :categories, only: :index
   resources :orders, only: %i[index edit show update destroy]
+
+  patch '/accept_orders/:id', to: "orders#accept", as: :accept
 end

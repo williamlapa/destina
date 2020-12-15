@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @order = Request.find(params[:request_id]).order if params[:request_id].present?
   end
 
   def new

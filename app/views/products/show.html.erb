@@ -56,4 +56,33 @@
       </table>
     </div>
   </div>
+<% else %>
+  <% if params[:request_id].present? %>
+    <div class="container">
+      <h2>Detalhes de <%= @product.name %></h2>
+    </div>
+    <div class="container">
+      <div class="row justify-content-left align-items-center">
+        <div class="col-4 col-md-4 col-lg-4">
+          <% if @product.photo.attached? %>
+            <div class="card2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path @product.photo.key, height: 450, width: 600,:crop=>"fill" %>);">
+          <% else %>
+            <div class="card2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("products.jpeg"), height: 450, width: 600 %>);">
+          <% end %>
+        </div>
+        <div class="container m-0-auto">
+          <%= link_to 'Voltar', :back %> |
+          <%= link_to 'Editar', edit_product_path(@product) %> |
+          <%= link_to 'Apagar', product_path(@product), method: :delete, data: { confirm: 'Tem certeza que você quer excluir este produto?'} %> 
+        </div>
+      </div>
+    </div>  
+    <div class="p-2">
+      <p><strong>Categoria:</strong> <%= @product.category.name %></p>
+      <p><strong>Descrição:</strong> <%= @product.description %></p>
+      <p><strong>Quantidade:</strong> <%= @order.request.quantity %></p>
+      <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
+      <%= link_to 'Aceitar produtos', accept_path(@order), method: :patch, class:"btn btn-outline-primary" %>
+    </div>
+  <% end %>
 <% end %>
