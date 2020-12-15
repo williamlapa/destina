@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_request_product, except: %i[index edit destroy]
-  before_action :set_order, only: %i[show edit update destroy]
+  before_action :set_request_product, except: %i[index edit destroy accept]
+  before_action :set_order, only: %i[show edit update destroy accept]
 
   def index
     @orders = Order.all.includes(:request, :user, request: :user)
@@ -36,6 +36,12 @@ class OrdersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def accept
+    @order.update(status: "Aceito")
+    redirect_to requests_path, notice: 'Ordem aceita com sucesso.'
+    @order.request.update_attributes(status: (@order.request.status = "A retirar"))
   end
 
   def destroy
