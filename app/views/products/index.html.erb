@@ -32,6 +32,7 @@
             <h6><%= product.name %></h6>
             <p class="card-text"><%= product.description %></p>
             <p>Quantidade: <%= product.quantity %></p>
+            <p>Situação: <%= product.status %></p>
             <% if params[:request_id].present? %>
               <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}" %>">Ver produto</a>
               <a class="btn btn-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}/orders/new" %>">Gerar ordem</a>

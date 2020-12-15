@@ -99,6 +99,7 @@
                   <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
                 <% end %>
                 <td class="text-center">
+                  <%= link_to '', request_path(request), class: 'fa fa-eye' %>
                   <%= link_to '', edit_request_path(request), class: "fa fa-edit" %>
                   <% if request.status == 'Aprovado'%>
                     <button type="button" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-envelope-open-text" aria-hidden="true"></i></button>

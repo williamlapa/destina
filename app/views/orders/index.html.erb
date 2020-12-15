@@ -11,6 +11,7 @@
         <table class="table table-bordered table-striped">
           <thead class="thead-light text-center">
             <tr>
+              <th scope="col">Nº</th>
               <th scope="col">Data</th>
               <th scope="col">CNPJ</th>
               <th scope="col">Quantidade</th>
@@ -21,6 +22,7 @@
           </thead>
           <% @orders.each do |order| %>
             <tr>
+              <td class="text-center"><%= order.id %></td>
               <td class="text-center"><%= order.created_at.strftime("%d/%m/%Y") %></td>
               <td class="text-center"><%= order.request.user.cnpj %></td>
               <td class="text-center"><%= order.request.quantity %></td>

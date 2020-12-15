@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_request_product, except: %i[index edit]
+  before_action :set_request_product, except: %i[index edit destroy]
   before_action :set_order, only: %i[show edit update destroy]
 
   def index
@@ -36,6 +36,13 @@ class OrdersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @order.destroy
+    redirect_to orders_url
+    @order.request.update_attributes(status: (@order.request.status = "Em analise"))
+    @order.product.update_attributes(quantity: (@order.product.quantity + @order.request.quantity))
   end
 
   private
