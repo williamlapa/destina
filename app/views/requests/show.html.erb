@@ -1,9 +1,20 @@
 <% if current_user.role == 'RFB' %>
   <div class="container">
-    <h2 class="text-center">Lista de requisições da entidade ou órgão</h2>
-    <p><strong>CNPJ:</strong> <%= @user.entity_name %></p>
-    <p><strong>Nome empresarial:</strong> <%= @user.cnpj %></p>
-    <div class="row justify-content-left align-items-center">  
+    <h2><strong>Nome empresarial:</strong> <%= @user.entity_name %></h2>
+    <h2><strong>CNPJ:</strong> <%= @user.cnpj %></h2>
+    <h3 class="text-center">Detalhes da requisição nº <%= @request.id %></h3>
+    <div class="p-2">
+      <p><strong>Data:</strong> <%= @request.created_at.strftime("%d/%m/%Y") %></p>
+      <p><strong>Categoria:</strong> <%= @request.category.name %></p>
+      <p><strong>Descrição:</strong> <%= @request.description %></p>
+      <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
+      <p><strong>Situação:</strong> <%= @request.status %></p>
+      <%= link_to 'Consultar Produtos', request_products_path(params[:id]), class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
+  <div class="container">
+    <h3 class="text-center">Lista de requisições da entidade ou órgão</h3>
+    <div class="row justify-content-left align-items-center">
       <table class="table table-bordered table-striped">
         <thead class="thead-light text-center">
           <tr>
@@ -41,4 +52,14 @@
     </div>
   </div>
 <% else %>
+  <div class="container">
+    <h2 class="text-center">Detalhes da requisição nº <%= @request.id %></h2>
+    <p><strong>CNPJ:</strong> <%= @user.entity_name %></p>
+    <p><strong>Nome empresarial:</strong> <%= @user.cnpj %></p>
+    <p><strong>Data:</strong> <%= @request.created_at.strftime("%d/%m/%Y") %></p>
+    <p><strong>Categoria:</strong> <%= @request.category.name %></p>
+    <p><strong>Descrição:</strong> <%= @request.description %></p>
+    <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
+    <p><strong>Situação:</strong> <%= @request.status %></p>
+  </div>
 <% end %>

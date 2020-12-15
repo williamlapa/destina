@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   end
   resources :products
   resources :categories, only: :index
-  resources :orders, only: %i[index edit show update]
+  resources :orders, only: %i[index edit show update destroy]
 end
