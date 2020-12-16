@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "logo.png" %>
+    <%= image_tag "logo_white.png" %>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="nav_item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Requisições
           </a>
           <% if current_user.role == 'RFB' %>
@@ -27,7 +27,7 @@
         </li>
           <% if current_user.role == 'RFB' %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="nav_item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Mercadorias
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,7 +38,7 @@
           <% end %>
           <% if current_user.role == 'RFB' %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="nav_item" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Ordens
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,7 +46,7 @@
               </div>
             </li>
           <% end %>
-        <span class="nav-link">
+        <span id="nav_user_logged_in">
           <strong><%= "#{current_user.first_name}" %></strong>
           <% if current_user.role.present? %>
             <strong><%= " (#{current_user.role})" %></strong>
@@ -74,8 +74,8 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Entrar", new_user_session_path, class: "nav-link" %>
+        <li class="nav-item" id="nav_entrar">
+          <%= link_to "Entrar", new_user_session_path, id: "nav-entrar" %>
         </li>
       <% end %>
     </ul>
