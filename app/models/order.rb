@@ -3,6 +3,6 @@ class Order < ApplicationRecord
   belongs_to :product
   belongs_to :user
   validates_presence_of :status
-  STATUS = ['Reservado', 'Aceito', 'Entregue']
+  STATUS = ['Reservada', 'Aguarda Documentos', 'Aceita', 'Entregue']
   validates :status, inclusion: { in: STATUS }
 end

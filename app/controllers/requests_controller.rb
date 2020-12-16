@@ -34,11 +34,11 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @request.user_id = current_user.id
-    @request.status = "Em analise"
+    @request.status = "Em análise"
     if @request.save
       # mail = RequestMailer.with(request: @request).newrequest(@request)
       # mail.deliver_now
-      redirect_to requests_path, notice: 'Pedido criado com sucesso!'
+      redirect_to requests_path, notice: 'Requisição criada com sucesso!'
     else
       render 'new'
     end
@@ -46,7 +46,7 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(request_params)
-      redirect_to @request, notice: 'request was successfully updated.'
+      redirect_to @request, notice: 'Requisição atualizada com sucesso.'
     else
       render :edit
     end

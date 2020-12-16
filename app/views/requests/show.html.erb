@@ -10,7 +10,7 @@
       <p><strong>Descrição:</strong> <%= @request.description %></p>
       <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
       <p><strong>Situação:</strong> <%= @request.status %></p>
-      <%= link_to 'Consultar Produtos', request_products_path(params[:id]), class: 'btn btn-outline-primary' %>
+      <%= link_to 'Ver disponibilidade', request_products_path(params[:id]), class: 'btn btn-outline-primary' %>
     </div>
   </div>
   <div class="container">
@@ -32,21 +32,22 @@
             <tr>
               <td class="text-center"><%= request.id %></td>
               <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
-              <!-- Category retornando errado -->
               <td class="text-center"><%= request.category.name %></td>
               <td class="text-center"><%= request.description %></td>
               <td class="text-center"><%= request.quantity %></td>
-              <% if request.status == 'Em analise'%>
+              <% if request.status == 'Em análise'%>
                 <td class="text-center"><i class="far fa-hourglass" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
-              <% elsif request.status == 'Aprovado' %>
+              <% elsif request.status == 'Aprovada' %>
                 <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
-              <% elsif request.status == 'Rejeitado' %>
+              <% elsif request.status == 'Rejeitada' %>
                 <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
               <% elsif request.status == 'A retirar' %>
                 <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+              <% else %>
+                <td></td>
               <% end %>
-              <td class="text-center"><%= link_to 'Consultar Produtos', request_products_path(params[:id]), class: 'btn btn-outline-primary' %></td>
-              <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: 'btn btn-outline-danger' %></td>
+              <td class="text-center"><%= link_to 'Ver disponibilidade', request_products_path(params[:id]), class: 'btn btn-outline-primary' %></td>
+              <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: 'btn btn-outline-danger' %></td>
             </tr>
           <% end %>
       </table>

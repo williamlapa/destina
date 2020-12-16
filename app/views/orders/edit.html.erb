@@ -7,9 +7,9 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <div class="form-inputs">
       <p><em> Requisição de </em> <%= @order.request.user.entity_name %>: <%= @order.request.description %></p>
-      <p><em> Produto: </em><%= @order.product.description %></p>
+      <p><em> Mercadoria: </em><%= @order.product.description %></p>
       <p><em> Categoria: </em><%= @order.product.category.name %> </p>
-      <%= f.input :status, as: :select, collection: ['Reservado', 'Aguarda Documentos', 'Entregue'] %>
+      <%= f.input :status, as: :select, collection: ['Reservada', 'Aguarda Documentos', 'Entregue'] %>
     </div>
     <div class="form-actions">
       <%= f.button :submit, 'Atualizar', class: 'btn btn-primary' %>

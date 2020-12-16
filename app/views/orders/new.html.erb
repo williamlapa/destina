@@ -8,9 +8,9 @@
 
     <div class="form-inputs">
       <p><em> Requisição de </em> <%= User.find(@request[:user_id]).entity_name %>: <%= @request[:description] %></p>
-      <p><em> Produto: </em><%= @product[:description] %></p>
+      <p><em> Mercadoria: </em><%= @product[:description] %></p>
       <p><em> Categoria: </em><%= Category.find(@product[:category_id]).name %> </p>
-      <%= f.input :status, as: :select, collection: ['Reservado', 'Aguarda Documentos', 'Entregue'] %>
+      <%= f.input :status, as: :select, collection: ['Reservada', 'Aguarda Documentos', 'Entregue'] %>
     </div>
 
     <div class="form-actions">

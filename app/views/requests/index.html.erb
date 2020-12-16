@@ -38,22 +38,23 @@
             <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
             <td class="text-center"><%= request.user.cnpj %></td>
             <td class="text-center"><%= request.user.entity_name %></td>
-            <!-- Category retornando errado -->
             <td class="text-center"><%= request.category.name.capitalize %></td>
             <td class="text-center"><%= request.description %></td>
             <td class="text-center"><%= request.quantity %></td>
-            <% if request.status == 'Em analise'%>
+            <% if request.status == 'Em análise'%>
               <td class="text-center"><i class="far fa-hourglass" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
-            <% elsif request.status == 'Aprovado' %>
+            <% elsif request.status == 'Aprovada' %>
               <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i><strong><%= request.status %></strong></td>
-            <% elsif request.status == 'Rejeitado' %>
+            <% elsif request.status == 'Rejeitada' %>
               <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
             <% elsif request.status == 'A retirar' %>
               <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+            <% else %>
+              <td></td>
             <% end %>
             <div>
               <td class="text-center"><%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %></td>
-              <td class="text-center"><%= link_to 'Excluir', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: 'btn btn-outline-danger' %></td>
+              <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Confirma cancelar a requisição?'}, class: 'btn btn-outline-danger' %></td>
             </div>
           </tr>
         <% end %>
@@ -94,16 +95,18 @@
                 <td class="text-center"><span data-tooltip=<%= request.description %>><%= request.category.name.capitalize %></span></td>
                 <td class="text-center"><%= request.quantity %></td>
                 <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
-                <% if request.status == 'Em analise'%>
+                <% if request.status == 'Em análise'%>
                   <td class="text-center"><i class="far fa-hourglass" aria-hidden="true"></i><strong><%= request.status %></strong></td>
-                <% elsif request.status == 'Aprovado' %>
+                <% elsif request.status == 'Aprovada' %>
                   <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i><strong><%= request.status %></strong></td>
-                <% elsif request.status == 'Rejeitado' %>
+                <% elsif request.status == 'Rejeitada' %>
                   <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
-                <% else %>
+                <% elsif request.status == 'A retirar' %>
                   <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+                <% else %>
+                  <td></td>
                 <% end %>
-                <% if request.product.present? && request.status == 'Aprovado' %>
+                <% if request.product.present? && request.status == 'Aprovada' %>
                   <td class="text-center"><%= link_to 'Aceitar', request_product_path(request, request.product) %></td>
                 <% elsif request.status == 'A retirar' %>
                   <td class="text-center"><%= link_to 'Consultar', request_product_path(request, request.product) %></td>
@@ -113,12 +116,12 @@
                 <td class="text-center">
                   <%= link_to '', request_path(request), class: 'fa fa-eye' %>
                   <%= link_to '', edit_request_path(request), class: "fa fa-edit" %>
-                  <% if request.status == 'Aprovado'%>
+                  <% if request.status == 'Aprovada' || request.status == 'A retirar' %>
                     <button type="button" data-toggle="modal" data-target="#exampleModalLong"><i class="far fa-envelope-open" aria-hidden="true"></i></button>
                   <% else %>
                     <i class="fas fa-envelope"></i>
                   <% end %>
-                  <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash" %>
+                  <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta requisição?'}, class: "fa fa-trash" %>
                 </td>
               </tr>
           <% end %>

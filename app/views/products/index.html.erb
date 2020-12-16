@@ -35,7 +35,7 @@
             <p>Quantidade: <%= product.quantity %></p>
             <p>Situação: <%= product.status %></p>
             <% if params[:request_id].present? %>
-              <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}" %>">Ver mercadoria</a>
+              <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}" %>">Detalhes</a>
               <a class="btn btn-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}/orders/new" %>">Gerar ordem</a>
             <% else %>
               <a href="<%= product_path(product) %>" class="btn btn-outline-primary">Ver mercadoria</a>

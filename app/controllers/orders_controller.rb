@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
     else
       render :new
     end
-    @request.update_attributes(status: (@request.status = "Aprovado"))
+    @request.update_attributes(status: (@request.status = "Aprovada"))
     @product.update_attributes(quantity: (@product.quantity - @request.quantity))
   end
 
@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(order_params)
+    if @order.update!(status: @order.status)
       redirect_to @order, notice: 'Ordem atualizada com sucesso.'
     else
       render :edit
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def accept
-    @order.update(status: "Aceito")
+    @order.update(status: "Aceita")
     redirect_to requests_path, notice: 'Ordem aceita com sucesso.'
     @order.request.update_attributes(status: (@order.request.status = "A retirar"))
   end
@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     redirect_to orders_url
-    @order.request.update_attributes(status: (@order.request.status = "Em analise"))
+    @order.request.update_attributes(status: (@order.request.status = "Em análise"))
     @order.product.update_attributes(quantity: (@order.product.quantity + @order.request.quantity))
   end
 

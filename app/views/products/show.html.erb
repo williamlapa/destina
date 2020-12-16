@@ -76,8 +76,8 @@
       <p><strong>Categoria:</strong> <%= @product.category.name %></p>
       <p><strong>Descrição:</strong> <%= @product.description %></p>
       <p><strong>Quantidade:</strong> <%= @order.request.quantity %></p>
-      <p><strong>Endereço a retirar:</strong> <%= @product.address %></p>
-      <% if @order.request.status == 'Aprovado' %>
+      <p><strong>Retirar no endereço:</strong> <%= @product.address %></p>
+      <% if @order.request.status == 'Aprovada' %>
         <%= link_to 'Confirma mercadorias', accept_path(@order), method: :patch, data: { confirm: 'Confirma que irá retirar estas mercadorias?'}, class:"btn btn-outline-primary" %>
       <% end %>
     </div>
