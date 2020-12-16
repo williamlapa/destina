@@ -1,14 +1,42 @@
-<div class="container d-flex justify-content-around my-5">
-  <div class="row col-8 col-md-4 col-lg-4">
+<div class="container d-flex justify-content-between my-5 mx-2">
+  <div class="row col-6 col-md-6 col-lg-6">
     <h2>Categorias:</h2>
   </div>
-  <div class="row">
-    <% @categories.each do |category| %>
-      <div class="col-8 col-md-4 col-lg-4">
-        <div>
-          <p><%= category.id %> - <%= category.name %></p>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+    <div>
+      <table class="table table-bordered table-striped mx-3">
+        <thead class="thead-light text-center">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Símbolo</th>
+          </tr>
+        </thead>
+        <% @categories.each do |cat| %>
+            <tr>
+              <td class="text-center"><%= cat.id %></td>
+              <td class="text-center"><%= cat.name %></td>
+              <% if cat.id == 1 %>
+               <td class="text-center width: 12px"><i class="fas fa-car"></i></td>
+              <% elsif cat.id == 2 %>
+               <td class="text-center"><i class="fas fa-laptop"></i></td>
+              <% elsif cat.id == 3 %>
+               <td class="text-center"><i class="fas fa-mobile-alt"></i></td>
+              <% elsif cat.id == 4 %>
+               <td class="text-center"><i class="fas fa-tshirt"></i></td>
+              <% elsif cat.id == 5 %>
+               <td class="text-center"><i class="fas fa-motorcycle"></i></td>
+              <% elsif cat.id == 6 %>
+               <td class="text-center"><i class="fas fa-truck-pickup"></i></td>
+              <% elsif cat.id == 7 %>
+               <td class="text-center"><i class="fas fa-robot"></i></td>
+              <% elsif cat.id == 8 %>
+               <td class="text-center"><i class="fas fa-gamepad"></i></td>
+              <% elsif cat.id == 9 %>
+               <td class="text-center"><i class="far fa-gem"></i></td>
+              <% else %>
+               <td class="text-center"><i class="fas fa-headphones"></i></td>
+              <% end %>
+             </tr>
+          <% end %>
+      </table>
+    </div>
