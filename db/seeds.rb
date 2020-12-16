@@ -5,7 +5,7 @@ user = User.create(cpf: "12345678911",
                    first_name: 'Servidor',
                    last_name: 'publico',
                    email: "Servidor.rfb@email.com",
-                   password: "123123",
+                   password: "H$937p0q",
                    cnpj: "00000000000191",
                    address: "Esplanada dos Ministérios, Ministério da Economia, 7o andar",
                    entity_type: 'órgão público',
@@ -82,14 +82,6 @@ while number < 20
                            legal_framework: "Lei xxx de x/x/xxxx",
                            user_id: "#{number - 9}",
                            category_id: cat_id)
-  # puts category
-  # puts cat_id
-  # puts request.description
-  # puts request.category_id
-  # puts request.user_id
-  # puts cpf
-  # puts cpf.class
-  # puts cnpj
   number += 1
 end
 
@@ -99,7 +91,7 @@ while number < 100
   rand_text = (0...5).map { ('a'..'z').to_a[rand(26)] }.join
   quantity = rand(1..100)
   value = rand(100..10_000)
-  status = ['disponível', 'esgotado', 'indisponível'].sample
+  # status = ['disponível', 'esgotado', 'indisponível'].sample
 
   car_brand = ['fiat', 'gm', 'vw', 'honda', 'renault', 'toyota'].sample
   computer_brand = ['lenovo', 'apple', 'acer', 'samsung', 'HP', 'dell'].sample
@@ -159,7 +151,7 @@ while number < 100
                          description: "#{name} da #{brand.capitalize}",
                          address: "Av #{rand_text.reverse.upcase}, Numero 32#{number}",
                          quantity: quantity,
-                         status: status.capitalize,
+                         status: 'Disponível',
                          value: value,
                          category_id: catid)
   number += 1
