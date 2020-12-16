@@ -1,88 +1,92 @@
 <% if current_user.role == 'RFB' %>
-  <div class="container">
+  <div class="container text-center">
     <h2>Detalhes de <%= @product.name %></h2>
   </div>
 
   <div class="container">
-    <div class="row justify-content-left align-items-center">
+    <div class="row justify-content-left">
       <div class="col-4 col-md-4 col-lg-4">
         <% if @product.photo.attached? %>
           <div class="card2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path @product.photo.key, height: 450, width: 600,:crop=>"fill" %>);">
+          </div>
         <% else %>
           <div class="card2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("products.jpeg"), height: 450, width: 600 %>);">
+          </div>
         <% end %>
       </div>
-      <div class="container m-0-auto">
+      <div class="col-8 col-md-8 col-lg-8 mt-2">
+        <h5 class="text-center">Ordens geradas</h5>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-light text-center">
+            <tr>
+              <th scope="col">Data da ordem</th>
+              <th scope="col">CNPJ</th>
+              <th scope="col">Entidade</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Usuário</th>
+              <th scope="col">Opção</th>
+            </tr>
+          </thead>
+        <% @product.orders.each do |order| %>
+          <tr>
+            <td class="text-center"><%= order.created_at.strftime("%d/%m/%Y") %></td>
+            <td class="text-center"><%= order.request.user.cnpj %></td>
+            <td><%= order.request.user.entity_name %></td>
+            <td class="text-center"><%= order.request.quantity %></td>
+            <td class="text-center"><%= order.request.user.first_name %></td>
+            <td class="text-center"><%= link_to 'Excluir', order_path(order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta ordem?'}, class: 'btn btn-outline-danger' %></td>
+          </tr>
+        <% end %> 
+        </table>
+      </div>
+    </div>
+    <div class="p-2">
+      <p><strong>Categoria:</strong> <%= @product.category.name %></p>
+      <p><strong>Marca:</strong> <%= @product.brand %></p>
+      <p><strong>Descrição:</strong> <%= @product.description %></p>
+      <p><strong>Quantidade em estoque:</strong> <%= @product.quantity %></p>
+      <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
+      <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
+      <% if params[:request_id].present? %>
+        <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{@product.id}/orders/new" %>">Gerar nova ordem</a>
+      <% end %>
+      <div class="container mt-2">
         <%= link_to 'Voltar', :back %> |
         <%= link_to 'Editar', edit_product_path(@product) %> |
         <%= link_to 'Apagar', product_path(@product), method: :delete, data: { confirm: 'Tem certeza que você quer excluir esta mercadoria?'} %> 
       </div>
-
-    </div>
-  </div>  
-    <div class="p-2">
-      <p><strong>Categoria:</strong> <%= @product.category.name %></p>
-      <p><strong>Descrição:</strong> <%= @product.description %></p>
-      <p><strong>Quantidade:</strong> <%= @product.quantity %></p>
-      <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
-      <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
-      <% if params[:request_id].present? %>
-        <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{@product.id}/orders/new" %>">Gerar ordem</a>
-      <% end %>
-    </div>
-
-    <div>
-      <table class="table table-bordered table-striped">
-        <thead class="thead-light text-center">
-          <tr>
-            <th scope="col">Data da ordem</th>
-            <th scope="col">CNPJ</th>
-            <th scope="col">Entidade</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col">Usuário</th>
-            <th scope="col">Opção</th>
-          </tr>
-        </thead>
-        <% @product.orders.each do |order| %>
-            <tr>
-              <td class="text-center"><%= order.created_at.strftime("%d/%m/%Y") %></td>
-              <td class="text-center"><%= order.request.user.cnpj %></td>
-              <td class="text-center"><%= order.request.user.entity_name %></td>
-              <td class="text-center"><%= order.request.quantity %></td>
-              <td class="text-center"><%= order.request.user.first_name %></td>
-              <td class="text-center"><%= link_to 'Excluir', order_path(order), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta ordem?'}, class: 'btn btn-outline-danger' %></td>
-            </tr>
-          <% end %> 
-      </table>
     </div>
   </div>
 <% else %>
   <% if params[:request_id].present? %>
-    <div class="container">
+    <div class="container text-center mt-3">
       <h2>Detalhes de <%= @product.name %></h2>
     </div>
     <div class="container">
-      <div class="row justify-content-left align-items-center">
+      <div class="row justify-content-left">
         <div class="col-4 col-md-4 col-lg-4">
           <% if @product.photo.attached? %>
             <div class="card2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path @product.photo.key, height: 450, width: 600,:crop=>"fill" %>);">
+            </div>
           <% else %>
             <div class="card2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("products.jpeg"), height: 450, width: 600 %>);">
+            </div>
+          <% end %>
+        </div>
+        <div class="col-8 col-md-8 col-lg-8 mt-4">
+          <p><strong>Categoria:</strong> <%= @product.category.name %></p>
+          <p><strong>Marca:</strong> <%= @product.brand %></p>
+          <p><strong>Descrição:</strong> <%= @product.description %></p>
+          <p><strong>Quantidade reservada:</strong> <%= @order.request.quantity %></p>
+          <p><strong>Retirar no endereço:</strong> <%= @product.address %></p>
+          <% if @order.request.status == 'Aprovada' %>
+            <%= link_to 'Aceitar mercadorias', accept_path(@order), method: :patch, data: { confirm: 'Confirma que irá retirar estas mercadorias?'}, class:"btn btn-outline-primary" %>
           <% end %>
         </div>
       </div>
-    </div>  
-    <div class="p-2">
-      <p><strong>Categoria:</strong> <%= @product.category.name %></p>
-      <p><strong>Descrição:</strong> <%= @product.description %></p>
-      <p><strong>Quantidade:</strong> <%= @order.request.quantity %></p>
-      <p><strong>Retirar no endereço:</strong> <%= @product.address %></p>
-      <% if @order.request.status == 'Aprovada' %>
-        <%= link_to 'Confirma mercadorias', accept_path(@order), method: :patch, data: { confirm: 'Confirma que irá retirar estas mercadorias?'}, class:"btn btn-outline-primary" %>
-      <% end %>
-    </div>
-    <div class="m-2 pl-2">
-      <%= link_to 'Voltar', :back %>
+      <div class="container m-2 pl-2">
+        <%= link_to 'Voltar', :back %>
+      </div>
     </div>
   <% end %>
 <% end %>
