@@ -39,7 +39,7 @@
             <td class="text-center"><%= request.user.cnpj %></td>
             <td class="text-center"><%= request.user.entity_name %></td>
             <td class="text-center"><%= request.category.name.capitalize %></td>
-            <td class="text-center"><%= request.description %></td>
+            <td><%= request.description %></td>
             <td class="text-center"><%= request.quantity %></td>
             <% if request.status == 'Em análise'%>
               <td class="text-center"><i class="far fa-hourglass" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
