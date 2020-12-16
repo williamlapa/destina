@@ -21,6 +21,9 @@ class OrdersController < ApplicationController
     end
     @request.update_attributes(status: (@request.status = "Aprovada"))
     @product.update_attributes(quantity: (@product.quantity - @request.quantity))
+    if @product.quantity < 1
+      @product.update_attributes(status: (@product.status = "Esgotado"))
+    end
   end
 
   def new

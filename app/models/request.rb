@@ -9,7 +9,7 @@ class Request < ApplicationRecord
   validates :status, inclusion: { in: STATUS }
 
   def available_products
-    self.category.products.where(status: "Disponível")
+    self.category.products.where(status: "Disponível").where("quantity >= #{self.quantity}")
   end
 
   include PgSearch::Model
