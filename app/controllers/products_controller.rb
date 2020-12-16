@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to product_path(@product), notice: 'Produto criado com sucesso.'
+      redirect_to product_path(@product), notice: 'Mercadoria criada com sucesso.'
     else
       render 'new'
     end
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to @product, notice: 'Produto atualizado com sucesso.'
+      redirect_to @product, notice: 'Mercadoria atualizada com sucesso.'
     else
       render :edit
     end

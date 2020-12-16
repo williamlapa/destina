@@ -5,7 +5,7 @@ class Request < ApplicationRecord
   belongs_to :category
   validates_presence_of :description, :quantity, :status
   has_one_attached :photo
-  STATUS = ['Rejeitado', 'Em analise', 'Aprovado', 'A retirar']
+  STATUS = ['Rejeitada', 'Em análise', 'Aprovada', 'A retirar', 'Cancelada']
   validates :status, inclusion: { in: STATUS }
 
   def available_products

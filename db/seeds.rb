@@ -17,10 +17,10 @@ number = 10
 while number < 20
   rand_text = (0...5).map { ('a'..'z').to_a[rand(26)] }.join
   entity_type = ['organização da sociedade civil', 'órgão público'].sample
-  entity_name = ['AACD', 'Exercito', 'Policia', 'Hospital'].sample
+  entity_name = ['AACD', 'Exército', 'Polícia', 'Hospital'].sample
   cnpj = rand.to_s[2..15]
   cpf = rand.to_s[2..12]
-  categories = ['veiculo', 'computador', 'celular', 'vestuario', 'motocicleta', 'utilitario', 'brinquedo', 'jogo', 'acessorio', 'eletronico']
+  categories = ['veículo', 'computador', 'celular', 'vestuário', 'motocicleta', 'utilitário', 'brinquedo', 'jogo', 'acessório', 'eletrônico']
 
 # Cria 10 usuarios externos de entidades
 # Atende criterios de validacao do modelo e schema: email unico, cpf com 11 e cnpj com 14 digitos
@@ -77,7 +77,7 @@ while number < 20
   quant = rand(2..10)
   cat_id = categories.index(category) + 1
   request = Request.create(quantity: quant,
-                           status: "Em analise",
+                           status: "Em análise",
                            description: "Nossa entidade precisa de #{quant} unidades de #{category.capitalize} da marca #{brand.capitalize}",
                            legal_framework: "Lei xxx de x/x/xxxx",
                            user_id: "#{number - 9}",
@@ -99,7 +99,7 @@ while number < 100
   rand_text = (0...5).map { ('a'..'z').to_a[rand(26)] }.join
   quantity = rand(1..100)
   value = rand(100..10_000)
-  status = ['disponível', 'reservado', 'indisponivel'].sample
+  status = ['disponível', 'esgotado', 'indisponível'].sample
 
   car_brand = ['fiat', 'gm', 'vw', 'honda', 'renault', 'toyota'].sample
   computer_brand = ['lenovo', 'apple', 'acer', 'samsung', 'HP', 'dell'].sample
@@ -151,7 +151,7 @@ while number < 100
   elsif category == categories[9]
     brand = eletronic_brand
     catid = 10
-    name = 'Eletronico'
+    name = 'Eletrônico'
   end
 
   product = Product.create(name: name.capitalize,
