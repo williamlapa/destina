@@ -1,5 +1,5 @@
 <% if current_user.role == 'RFB' %>
-  <div class="container">
+  <div class="container w-50 mt-3">
     <h2 class="text-center">Cadastrar Ordem</h2>
       <!--%= render 'form', order: @order %-->
     <%= simple_form_for([@request, @product, @order]) do |f| %>
@@ -7,9 +7,9 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
-      <p><em> Requisição de </em> <%= User.find(@request[:user_id]).entity_name %>: <%= @request[:description] %></p>
-      <p><em> Mercadoria: </em><%= @product[:description] %></p>
-      <p><em> Categoria: </em><%= Category.find(@product[:category_id]).name %> </p>
+      <p><strong> Requisição de <%= User.find(@request[:user_id]).entity_name %></strong>: <%= @request[:description] %></p>
+      <p><strong> Mercadoria: </strong><%= @product[:description] %></p>
+      <p><strong> Categoria: </strong><%= Category.find(@product[:category_id]).name %> </p>
       <%= f.input :status, as: :select, collection: ['Reservada', 'Aguarda Documentos', 'Entregue'] %>
     </div>
 
