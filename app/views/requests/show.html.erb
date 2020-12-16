@@ -17,7 +17,7 @@
         <p><strong>Descrição:</strong> <%= @request.description %></p>
         <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
         <p><strong>Situação:</strong> <%= @request.status %></p>
-        <%= link_to 'Voltar', :back, class: 'btn btn-primary' %>
+        <%#= link_to "Requisições", requests_path, class: 'btn btn-primary' %>
         <%= link_to "Estoque #{@request.category.name}", request_products_path(params[:id]), class: 'btn btn-success' %>
       </div>
     </div>
@@ -61,7 +61,8 @@
         </table>
       </div>
       <div style="min-height: 42vh;">
-        <%= link_to 'Voltar', :back %>
+        <%#= link_to 'Voltar', :back %>
+        <%= link_to "Requisições", requests_path, class: 'btn btn-primary' %>
       </div>
     </div>
 <% else %>
