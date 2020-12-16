@@ -92,7 +92,13 @@
           <% current_user.requests.each do |request| %>
               <tr>
                 <td class="text-center"><%= request.id %></td>
-                <td class="text-center"><span data-tooltip=<%= request.description %>><%= request.category.name.capitalize %></span></td>
+                <td class="text-center">
+                  <div class="dropdown">
+                    <span><strong><%= request.category.name.capitalize %></strong></span>
+                      <div class="dropdown-content"><p><%= request.description %></p>
+                      </div>
+                  </div>
+                </td>
                 <td class="text-center"><%= request.quantity %></td>
                 <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
                 <% if request.status == 'Em análise'%>
