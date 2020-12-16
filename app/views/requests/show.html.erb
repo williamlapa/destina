@@ -21,7 +21,7 @@
         <%= link_to "Estoque #{@request.category.name}", request_products_path(params[:id]), class: 'btn btn-success' %>
       </div>
     </div>
-    <div class='container col-6'>
+    <div class='container col-8 ml-3'>
       <h3 class="text-center">Lista de requisições da entidade ou órgão</h3>
       <div class="row justify-content-left align-items-center">
         <table class="table table-bordered table-striped">
@@ -67,17 +67,19 @@
     </div>
 <% else %>
   <%# VISAO DA ENTIDADE %>
-  <div class='card justify-content-center w-50 aling-item-center'>
-    <div class='card-body'>
-      <h3 class="text-center p-3">Detalhes da requisição nº <%= @request.id %></h3>
-      <p><strong>Nome empresarial:</strong> <%= @user.entity_name %></p>
-      <p><strong>CNPJ:</strong> <%= @user.cnpj %></p>
-      <p><strong>Data:</strong> <%= @request.created_at.strftime("%d/%m/%Y") %></p>
-      <p><strong>Categoria:</strong> <%= @request.category.name %></p>
-      <p><strong>Descrição:</strong> <%= @request.description %></p>
-      <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
-      <p><strong>Situação:</strong> <%= @request.status %></p>
-      <%= link_to 'Voltar', :back, class: 'btn btn-primary' %>
+  <div class="container w-50">
+    <div class='card justify-content-center'>
+      <div class='card-body'>
+        <h3 class="text-center p-3">Detalhes da requisição nº <%= @request.id %></h3>
+        <p><strong>Nome empresarial:</strong> <%= @user.entity_name %></p>
+        <p><strong>CNPJ:</strong> <%= @user.cnpj %></p>
+        <p><strong>Data:</strong> <%= @request.created_at.strftime("%d/%m/%Y") %></p>
+        <p><strong>Categoria:</strong> <%= @request.category.name %></p>
+        <p><strong>Descrição:</strong> <%= @request.description %></p>
+        <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
+        <p><strong>Situação:</strong> <%= @request.status %></p>
+        <%= link_to 'Voltar', :back, class: 'btn btn-primary' %>
+      </div>
     </div>
   </div>
 <% end %>
