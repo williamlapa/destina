@@ -13,6 +13,20 @@
           <div class="card2" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_url ("products.jpeg"), height: 450, width: 600 %>);">
           </div>
         <% end %>
+        <p><strong>Categoria:</strong> <%= @product.category.name %></p>
+        <p><strong>Marca:</strong> <%= @product.brand %></p>
+        <p><strong>Descrição:</strong> <%= @product.description %></p>
+        <p><strong>Quantidade em estoque:</strong> <%= @product.quantity %></p>
+        <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
+        <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
+        <% if params[:request_id].present? %>
+          <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{@product.id}/orders/new" %>">Gerar nova ordem</a>
+        <% end %>
+        <div class="container mt-2">
+          <%= link_to 'Voltar', :back %> |
+          <%= link_to 'Editar', edit_product_path(@product) %> |
+          <%= link_to 'Apagar', product_path(@product), method: :delete, data: { confirm: 'Tem certeza que você quer excluir esta mercadoria?'} %> 
+        </div>
       </div>
       <div class="col-8 col-md-8 col-lg-8 mt-2">
         <h5 class="text-center">Ordens geradas</h5>
@@ -38,22 +52,6 @@
           </tr>
         <% end %> 
         </table>
-      </div>
-    </div>
-    <div class="p-2">
-      <p><strong>Categoria:</strong> <%= @product.category.name %></p>
-      <p><strong>Marca:</strong> <%= @product.brand %></p>
-      <p><strong>Descrição:</strong> <%= @product.description %></p>
-      <p><strong>Quantidade em estoque:</strong> <%= @product.quantity %></p>
-      <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
-      <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
-      <% if params[:request_id].present? %>
-        <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{@product.id}/orders/new" %>">Gerar nova ordem</a>
-      <% end %>
-      <div class="container mt-2">
-        <%= link_to 'Voltar', :back %> |
-        <%= link_to 'Editar', edit_product_path(@product) %> |
-        <%= link_to 'Apagar', product_path(@product), method: :delete, data: { confirm: 'Tem certeza que você quer excluir esta mercadoria?'} %> 
       </div>
     </div>
   </div>

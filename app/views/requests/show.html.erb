@@ -25,7 +25,7 @@
             <th scope="col">Descrição</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Situação</th>
-            <th scope="col" colspan="2">Opções</th>
+            <th scope="col">Opção</th>
           </tr>
         </thead>
         <% @user.requests.each do |request| %>
@@ -46,7 +46,6 @@
               <% else %>
                 <td></td>
               <% end %>
-              <td class="text-center"><%= link_to 'Ver disponibilidade', request_products_path(params[:id]), class: 'btn btn-outline-primary' %></td>
               <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: 'btn btn-outline-danger' %></td>
             </tr>
           <% end %>
