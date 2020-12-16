@@ -54,8 +54,7 @@
                 <% else %>
                   <td></td>
                 <% end %>
-                <td class="text-center"><%= link_to "Estoque #{request.category.name}", request_products_path(params[:id]), class: 'btn btn-success' %></td>
-                <td class="text-center"><%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash fa-2x" %></td>
+                <td class="text-center"><%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash" %></td>
               </tr>
             <% end %>
         </table>
