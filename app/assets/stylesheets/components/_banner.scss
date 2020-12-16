@@ -1,9 +1,8 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 19px 0;
-  height: 52vh;
-  align: center;
+  padding: 30px 0;
+  height: 70vh;
 }
 
 .banner h1 {
@@ -17,6 +16,19 @@
 .banner p {
   font-size: 18px;
   color: white;
-  opacity: .7;
+  opacity: .8;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 60px;
+    padding-top: 30px;
+  }
 }
