@@ -82,7 +82,7 @@
         <p><strong>Descrição:</strong> <%= @request.description %></p>
         <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
         <p><strong>Situação:</strong> <%= @request.status %></p>
-        <%= link_to 'Voltar', :back, class: 'btn btn-primary' %>
+        <%= link_to 'Requisições', requests_path(request), class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
