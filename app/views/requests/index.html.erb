@@ -84,9 +84,9 @@
               <th scope="col">Categoria</th>
               <th scope="col">Quantidade</th>
               <th scope="col">Data Requisição</th>
-              <th scope="col">Status</th>
-              <th scope="col">Ordem</th>
+              <th scope="col">Situação</th>
               <th scope="col">Ação</th>
+              <th scope="col">Opções</th>
             </tr>
           </thead>
           <% current_user.requests.each do |request| %>
@@ -111,7 +111,7 @@
                 <% elsif request.status == 'A retirar' %>
                   <td class="text-center"><%= link_to 'Consultar', request_product_path(request, request.product) %></td>
                 <% else %>
-                  <td></td>
+                  <td class="text-center">Aguardar</td>
                 <% end %>
                 <td class="text-center">
                   <%= link_to '', request_path(request), class: 'fa fa-eye' %>

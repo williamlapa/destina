@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_request_product, except: %i[index edit destroy accept]
+  before_action :set_request_product, except: %i[index edit update destroy accept]
   before_action :set_order, only: %i[show edit update destroy accept]
 
   def index
