@@ -53,11 +53,11 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    if @order.present?
-      @order.destroy
-      @order.product.update_attributes(quantity: (@order.product.quantity + @order.request.quantity))
-      if @order.product.quantity.positive?
-        @order.product.update_attributes(status: "Disponível")
+    if @request.order.present?
+      @request.order.destroy
+      @request.order.product.update_attributes(quantity: (@request.order.product.quantity + @request.quantity))
+      if @request.order.product.quantity.positive?
+        @request.order.product.update_attributes(status: "Disponível")
       end
     end
     @request.destroy
