@@ -1,8 +1,8 @@
-<div class="container mt-1 p-1 d-flex justify-content-between">
-  <div>
-    <h1 class="container mt-3 justify-content-between text-center">Requisições</h1>
-  </div>
-  <% if current_user.role == 'RFB' %>
+<% if current_user.role == 'RFB' %>
+  <div class="container mt-1 p-1 d-flex justify-content-around">
+    <div>
+      <h1 class="mt-3">Requisições</h1>
+    </div>
     <div class="mt-3 col-6">
       <%= simple_form_for :search, url: requests_path, method: :get do |f| %>
         <div class="search-form-control form-group">
@@ -64,7 +64,12 @@
         <% end %>
       </table>
     <% else %>
-      <div class="col-4">
+      <div class="container">
+        <div>
+          <h1 class="container mt-3 text-center">Requisições</h1>
+        </div>
+      </div>
+      <div class="col-4 mt-3">
         <div class="card-trip" >
           <%= image_tag "entidadesocial" %>
           <div class="card-trip-infos">
@@ -80,7 +85,7 @@
         </div>
       </div>
   <%# FIM DO CARD DA ENTIDADE %>
-      <div class="col-8">
+      <div class="col-8 mt-3">
         <table class="table table-bordered table-striped">
           <thead class="thead-light text-center">
             <tr>
