@@ -7,11 +7,10 @@
     <p><strong>Endereço:</strong> <%= @user.address %></p>    
   </div>
   <div class='d-flex'>
-    <div class='card col-4' style="height: 32rem;">
+    <div class='card col-3' style="height: 35rem;">
       <div class='card-body'>
-        <h3 class="text-center p-3">Detalhes da requisição nº <%= @request.id %></h3>
-        <p><strong>Nome empresarial:</strong> <%= @user.entity_name %></p>
-        <p><strong>CNPJ:</strong> <%= @user.cnpj %></p>
+        <h3 class="text-center p-3">Detalhes da requisição</h3>
+        <h4 class="mb-3"><strong>Nº:</strong> <%= @request.id %></h4>
         <p><strong>Data:</strong> <%= @request.created_at.strftime("%d/%m/%Y") %></p>
         <p><strong>Categoria:</strong> <%= @request.category.name %></p>
         <p><strong>Descrição:</strong> <%= @request.description %></p>
@@ -21,7 +20,7 @@
         <%= link_to "Estoque #{@request.category.name}", request_products_path(params[:id]), class: 'btn btn-success' %>
       </div>
     </div>
-    <div class='container col-8 ml-3'>
+    <div class='container col-9 ml-3'>
       <h3 class="text-center">Lista de requisições da entidade ou órgão</h3>
       <div class="row justify-content-left align-items-center">
         <table class="table table-bordered table-striped">
@@ -31,9 +30,9 @@
               <th scope="col">Data</th>
               <th scope="col">Categoria</th>
               <th scope="col">Descrição</th>
-              <th scope="col">Quantidade</th>
+              <th scope="col">Qtde</th>
               <th scope="col">Situação</th>
-              <th scope="col" colspan="2" style="width:300px">Opções</th>
+              <th scope="col" colspan="2">Opções</th>
             </tr>
           </thead>
           <% @user.requests.each do |request| %>
@@ -55,18 +54,22 @@
                   <td></td>
                 <% end %>
                 <% if request.status == 'Em análise' %>
-                  <td class="text-center"><%= link_to "Estoque #{request.category.name}", request_products_path(request), class: 'btn btn-success' %></td>
+                  <td class="text-center">
+                    <%= link_to "Estoque #{request.category.name}", request_products_path(request), class: 'btn btn-success' %>
+                    <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash mt-3" %>
+                  </td>
                 <% else %>
-                  <td></td>
+                  <td class="text-center">
+                    <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash" %>
+                  </td>
                 <% end %>
-                <td class="text-center"><%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash" %></td>
               </tr>
             <% end %>
         </table>
       </div>
       <div style="min-height: 42vh;">
-        <%#= link_to 'Voltar', :back %>
         <%= link_to "Requisições", requests_path, class: 'btn btn-primary' %>
+        <%= link_to 'Voltar', :back, class: 'ml-3' %>
       </div>
     </div>
 <% else %>

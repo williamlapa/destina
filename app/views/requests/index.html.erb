@@ -1,9 +1,9 @@
 <div class="container d-flex justify-content-around">
   <div class="justify-content-center">
-    <h1>Requisições</h1>
+    <h1 class="mt-3">Requisições</h1>
   </div>
 </div>
-<div class="container">
+<div class="container mt-3">
   <% if current_user.role == 'RFB' %>
     <div class="mt-2 col-6">
       <%= simple_form_for :search, url: requests_path, method: :get do |f| %>
@@ -27,7 +27,7 @@
             <th scope="col">Entidade</th>
             <th scope="col">Categoria</th>
             <th scope="col">Descrição</th>
-            <th scope="col">Quantidade</th>
+            <th scope="col">Qtde</th>
             <th scope="col">Status</th>
             <th scope="col" colspan="2">Opções</th>
           </tr>
@@ -37,7 +37,7 @@
             <td class="text-center"><%= request.id %></td>
             <td class="text-center"><%= request.created_at.strftime("%d/%m/%Y") %></td>
             <td class="text-center"><%= request.user.cnpj %></td>
-            <td class="text-center"><%= request.user.entity_name %></td>
+            <td><%= request.user.entity_name %></td>
             <td class="text-center"><%= request.category.name.capitalize %></td>
             <td><%= request.description %></td>
             <td class="text-center"><%= request.quantity %></td>
@@ -53,8 +53,10 @@
               <td></td>
             <% end %>
             <div>
-              <td class="text-center"><%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %></td>
-              <td class="text-center"><%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Confirma cancelar a requisição?'}, class: 'btn btn-outline-danger' %></td>
+              <td>
+                <%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %>
+                <%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Confirma cancelar a requisição?'}, class: 'btn btn-outline-danger mt-2' %>
+                </td>
             </div>
           </tr>
         <% end %>
@@ -67,9 +69,9 @@
             <div>
               <h2>Entidade:</h2>
               <p><%= current_user.entity_name %></p>
-            </div>
-            <div>
-              <h2>Tipo da entidade:</h2>
+              <h2>CNPJ:</h2>
+              <p><%= current_user.cnpj %></p>
+              <h2>Tipo de entidade:</h2>
               <p><%= current_user.entity_type %></p>
             </div>
           </div>
@@ -82,8 +84,8 @@
             <tr>
               <th scope="col">Nº</th>
               <th scope="col">Categoria</th>
-              <th scope="col">Quantidade</th>
-              <th scope="col">Data Requisição</th>
+              <th scope="col">Qtde</th>
+              <th scope="col">Data</th>
               <th scope="col">Situação</th>
               <th scope="col">Ação</th>
               <th scope="col">Opções</th>
@@ -113,7 +115,7 @@
                   <td></td>
                 <% end %>
                 <% if request.product.present? && request.status == 'Aprovada' %>
-                  <td class="text-center"><%= link_to 'Aceitar', request_product_path(request, request.product) %></td>
+                  <td class="text-center"><%= link_to 'Aceitar?', request_product_path(request, request.product) %></td>
                 <% elsif request.status == 'A retirar' %>
                   <td class="text-center"><%= link_to 'Consultar', request_product_path(request, request.product) %></td>
                 <% else %>
