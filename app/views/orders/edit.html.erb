@@ -1,6 +1,6 @@
 <% if current_user.role == 'RFB' %>
   <div class="container w-25 mt-3">
-    <h2 class="text-center">Atualizar Ordem nº</h2>
+    <h2 class="text-center">Atualizar Ordem nº <%= @order.id %></h2>
       <!--%= render 'form', order: @order %-->
     <div class="form-inputs">
       <h4 class="text-center"><strong> Requisição nº </strong><%= @order.request.id %></h4>
