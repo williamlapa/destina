@@ -33,7 +33,7 @@
         </table>
       </div>
       <div class="ml-2">
-        <%= simple_form_for([@request, @product, @order]) do |f| %>
+        <%= simple_form_for([@order]) do |f| %>
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
           <%= f.input :status, :label => "Escolha um estado:", as: :radio_buttons, collection: ['Reservada', 'Aguarda Documentos', 'Entregue'], wrapper: :vertical_collection_inline %>
