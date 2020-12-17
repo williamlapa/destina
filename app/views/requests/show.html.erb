@@ -7,7 +7,7 @@
     <p><strong>Endereço:</strong> <%= @user.address %></p>    
   </div>
   <div class='d-flex'>
-    <div class='card col-3' style="height: 38rem;">
+    <div class='card sticky col-3' style="height: 38rem;">
       <div class='card-body'>
         <h3 class="text-center p-3">Detalhes da requisição</h3>
         <h4 class="mb-3"><strong>Nº:</strong> <%= @request.id %></h4>
@@ -32,7 +32,7 @@
               <th scope="col">Descrição</th>
               <th scope="col">Qtde</th>
               <th scope="col">Situação</th>
-              <th scope="col" colspan="2">Opções</th>
+              <th scope="col">Opções</th>
             </tr>
           </thead>
           <% @user.requests.each do |request| %>
