@@ -1,12 +1,9 @@
-<div class="container">
-  <div class="container"></div>
-    <div class="justify-content-center">
-      <h1 class="mt-3">Requisições</h1>
-    </div>
+<div class="container mt-1 p-1 d-flex justify-content-between">
+  <div>
+    <h1 class="container mt-3 justify-content-between text-center">Requisições</h1>
   </div>
-<div class="container mt-3">
   <% if current_user.role == 'RFB' %>
-    <div class="mt-2 col-6">
+    <div class="mt-3 col-6">
       <%= simple_form_for :search, url: requests_path, method: :get do |f| %>
         <div class="search-form-control form-group">
           <input class="form-control string required" type="text" name="query" id="query"/>
@@ -17,6 +14,8 @@
       <% end %>
     </div>
   <% end %>
+</div>
+<div class="container mt-0">
   <div class="row">
     <% if current_user.role == 'RFB' %>
       <table class="table table-bordered table-striped">
