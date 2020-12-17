@@ -20,7 +20,7 @@
           <p><strong>Quantidade em estoque:</strong> <%= @product.quantity %></p>
           <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
           <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
-          <% if params[:request_id].present? %>
+          <% if params[:request_id].present? && @product.status == "Disponível" %>
             <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{@product.id}/orders/new" %>">Gerar nova ordem</a>
           <% end %>
         </div>
