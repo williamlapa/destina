@@ -43,6 +43,7 @@
                 <td class="text-center"><%= request.category.name %></td>
                 <td><%= request.description %></td>
                 <td class="text-center"><%= request.quantity %></td>
+
                 <% if request.status == 'Em análise'%>
                   <td class="text-center"><i class="far fa-hourglass" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
                 <% elsif request.status == 'Aprovada' %>
@@ -56,16 +57,70 @@
                 <% else %>
                   <td></td>
                 <% end %>
+
                 <% if request.status == 'Em análise' %>
-                  <td class="text-center">
-                    <%= link_to "Estoque #{request.category.name}", request_products_path(request), class: 'btn btn-success' %>
-                    <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash mt-3" %>
-                  </td>
+                    <!--GRANDE IF ELSE PARA MOSTRAR FIGURA -->
+                    <% if request.category.id == 1 %>
+                      <td class="text-center width: 12px"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-car' %>
+                      </td>
+                    <% elsif request.category.id == 2 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-laptop' %>
+                      </td>
+                    <% elsif request.category.id == 3 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-mobile-alt' %>
+                      </td>
+                    <% elsif request.category.id == 4 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-tshirt' %>
+                      </td>
+                    <% elsif request.category.id == 5 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-motorcycle' %>
+                      </td>
+                    <% elsif request.category.id == 6 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-truck-pickup' %>
+                      </td>
+                    <% elsif request.category.id == 7 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-robot' %>
+                      </td>
+                    <% elsif request.category.id == 8 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-gamepad' %>
+                      </td>
+                    <% elsif request.category.id == 9 %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-gem' %>
+                      </td>
+                    <% elsif %>
+                      <td class="text-center"><%= link_to '', request_products_path(params[:id]), class: 'fas fa-headphones' %>
+                      </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
                 <% else %>
+                    <% if request.category.id == 1 %>
+                      <td class="text-center width: 12px"><i class="fas fa-car"></i></td>
+                    <% elsif request.category.id == 2 %>
+                      <td class="text-center"><i class="fas fa-laptop"></i></td>
+                    <% elsif request.category.id == 3 %>
+                      <td class="text-center"><i class="fas fa-mobile-alt"></i></td>
+                    <% elsif request.category.id == 4 %>
+                      <td class="text-center"><i class="fas fa-tshirt"></i></td>
+                    <% elsif request.category.id == 5 %>
+                      <td class="text-center"><i class="fas fa-motorcycle"></i></td>
+                    <% elsif request.category.id == 6 %>
+                      <td class="text-center"><i class="fas fa-truck-pickup"></i></td>
+                    <% elsif request.category.id == 7 %>
+                      <td class="text-center"><i class="fas fa-robot"></i></td>
+                    <% elsif request.category.id == 8 %>
+                      <td class="text-center"><i class="fas fa-gamepad"></i></td>
+                    <% elsif request.category.id == 9 %>
+                      <td class="text-center"><i class="far fa-gem"></i></td>
+                    <% elsif %>
+                      <td class="text-center"><i class="fas fa-headphones"></i></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                <% end %>
                   <td class="text-center">
                     <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma apagar a requisição?'}, class: "fa fa-trash" %>
                   </td>
-                <% end %>
               </tr>
             <% end %>
         </table>
