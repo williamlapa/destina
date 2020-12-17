@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update!(status: @order.status)
+    if @order.update(order_params)
       redirect_to @order, notice: 'Ordem atualizada com sucesso.'
     else
       render :edit
@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
     redirect_to requests_path, notice: 'Mercadoria rejeitada com sucesso.'
     @order.request.update_attributes(status: "Encerrada")
     @order.product.update_attributes(quantity: (@order.product.quantity + @order.request.quantity))
-    if @order.product.quantity > 0
+    if @order.product.quantity.positive?
       @order.product.update_attributes(status: "Disponível")
     end
   end
