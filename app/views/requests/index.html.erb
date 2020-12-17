@@ -53,9 +53,9 @@
               <td></td>
             <% end %>
             <div>
-              <td>
-                <%= link_to 'Consultar', request_path(request), class: 'btn btn-outline-primary' %>
-                <%= link_to 'Cancelar', request_path(request), method: :delete, data: { confirm: 'Confirma cancelar a requisição?'}, class: 'btn btn-outline-danger mt-2' %>
+              <td class="text-center">
+                <%= link_to '', request_path(request), class: 'fa fa-eye' %>
+                <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Confirma cancelar a requisição?'}, class: 'fa fa-trash' %>
                 </td>
             </div>
           </tr>
