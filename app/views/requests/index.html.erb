@@ -129,13 +129,21 @@
                 <% end %>
                 <td class="text-center">
                   <%= link_to '', request_path(request), class: 'fa fa-eye' %>
-                  <%= link_to '', edit_request_path(request), class: "fa fa-edit" %>
+                  <% if request.status == 'Em análise' %>
+                    <%= link_to '', edit_request_path(request), class: "fa fa-edit" %>
+                  <% else %>
+                    <i class="fas fa-edit"></i>
+                  <% end %>
                   <% if request.status == 'Aprovada' || request.status == 'A retirar' %>
                     <button type="button" data-toggle="modal" data-target="#exampleModalLong"><i class="far fa-envelope-open" aria-hidden="true"></i></button>
                   <% else %>
                     <i class="fas fa-envelope"></i>
                   <% end %>
-                  <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta requisição?'}, class: "fa fa-trash" %>
+                  <% if request.status != 'Encerrada' %>
+                    <%= link_to '', request_path(request), method: :delete, data: { confirm: 'Tem certeza que quer excluir esta requisição?'}, class: "fa fa-trash" %>
+                  <% else %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
                 </td>
               </tr>
           <% end %>
