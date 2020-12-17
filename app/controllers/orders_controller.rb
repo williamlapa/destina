@@ -44,13 +44,13 @@ class OrdersController < ApplicationController
   def accept
     @order.update(status: "Aceita")
     redirect_to requests_path, notice: 'Ordem aceita com sucesso.'
-    @order.request.update_attributes(status: (@order.request.status = "A retirar"))
+    @order.request.update_attributes(status: "A retirar")
   end
 
   def destroy
     @order.destroy
     redirect_to orders_url
-    @order.request.update_attributes(status: (@order.request.status = "Em análise"))
+    @order.request.update_attributes(status: "Em análise")
     @order.product.update_attributes(quantity: (@order.product.quantity + @order.request.quantity))
   end
 
