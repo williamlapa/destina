@@ -22,6 +22,10 @@
             <td class="text-left"><%= @product[:description] %></td>
           </tr>
           <tr>
+            <td class="text-center"><strong> Quantidade: </strong></td>
+            <td class="text-left"><%= @request[:quantity] %></td>
+          </tr>
+          <tr>
             <td class="text-center"><strong> Categoria: </strong></td>
             <td class="text-left"><%= Category.find(@product[:category_id]).name %> </td>
           </tr>

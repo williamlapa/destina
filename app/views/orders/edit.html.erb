@@ -1,45 +1,48 @@
 <% if current_user.role == 'RFB' %>
-  <div class="container d-flex mt-3">
+  <div class="container">
     <div class="container w-50">
       <h2 class="text-center">Atualizar Ordem nº <%= @order.id %></h2>
-    <div class="form-inputs">
-      <h4 class="text-center"><strong> Requisição nº </strong><%= @order.request_id %></h4>
-    </div>
+        <!--%= render 'form', order: @order %-->
+      <div class="form-inputs">
+        <h4 class="text-center"><strong> Requisição nº </strong><%= @order.request_id %></h4>
+      </div>
       <div>
         <table class="table table-bordered table-striped">
           <thead class="thead-light text-center">
           </thead>
-            <%= simple_form_for([@request, @product, @order]) do |f| %>
-              <%= f.error_notification %>
-              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-            <tr>
-              <td class="text-center"><strong> Entidade/órgão: </strong></td>
-              <td class="text-left"><%= @order.request.user.entity_name %></td>
-            </tr>
-            <tr>
-              <td class="text-center"><strong> Descrição: </strong></td>
-              <td class="text-left"><%= @order.request.description %></td>
-            </tr>
-            <tr>
-              <td class="text-center"><strong> Mercadoria: </strong></td>
-              <td class="text-left"><%= @order.product.description %></td>
-            </tr>
-            <tr>
-              <td class="text-center"><strong> Categoria: </strong></td>
-              <td class="text-left"><%= @order.product.category.name %></td>
-            </tr>
-            <tr>
-              <td colspan='2' class="text-center"><%= f.input :status, :label => "Escolha um estado:", as: :radio_buttons, collection: ['Reservada', 'Aguarda Documentos', 'Entregue'], wrapper: :vertical_collection_inline %></td>
-            </tr>
+          <tr>
+            <td class="text-center"><strong> Entidade/órgão: </strong></td>
+            <td class="text-left"><%= @order.request.user.entity_name %></td>
+          </tr>
+          <tr>
+            <td class="text-center"><strong> Descrição: </strong></td>
+            <td class="text-left"><%= @order.request.description %></td>
+          </tr>
+          <tr>
+            <td class="text-center"><strong> Mercadoria: </strong></td>
+            <td class="text-left"><%= @order.product.description %></td>
+          </tr>
+          <tr>
+            <td class="text-center"><strong> Quantidade: </strong></td>
+            <td class="text-left"><%= @order.request.quantity %></td>
+          </tr>
+          <tr>
+            <td class="text-center"><strong> Categoria: </strong></td>
+            <td class="text-left"><%= @order.product.category.name %> </td>
+          </tr>
         </table>
       </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, 'Salvar ordem', class: 'btn btn-primary' %>
+      <div class="ml-2">
+        <%= simple_form_for([@request, @product, @order]) do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <%= f.input :status, :label => "Escolha um estado:", as: :radio_buttons, collection: ['Reservada', 'Aguarda Documentos', 'Entregue'], wrapper: :vertical_collection_inline %>
+          <div class="form-actions">
+            <%= f.button :submit, 'Atualizar', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+        <%= link_to 'Voltar', orders_path %>
       </div>
-    <% end %>
-    <%= link_to 'Voltar', :back %>
     </div>
   </div>
 <% end %>
