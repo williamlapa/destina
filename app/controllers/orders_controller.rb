@@ -34,8 +34,8 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(request_id: @order.request, product_id: @order.product, status: :status)
-      redirect_to @order, notice: 'Ordem atualizada com sucesso.'
+    if @order.update(order_params)
+      redirect_to orders_path, notice: 'Ordem atualizada com sucesso.'
     else
       render :edit
     end
