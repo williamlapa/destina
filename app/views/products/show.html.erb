@@ -80,7 +80,8 @@
           <p><strong>Quantidade reservada:</strong> <%= @order.request.quantity %></p>
           <p><strong>Retirar no endereço:</strong> <%= @product.address %></p>
           <% if @order.request.status == 'Aprovada' %>
-            <%= link_to 'Aceitar mercadorias', accept_path(@order), method: :patch, data: { confirm: 'Confirma que irá retirar estas mercadorias?'}, class:"btn btn-outline-primary" %>
+            <%= link_to 'Aceitar', accept_path(@order), method: :patch, data: { confirm: 'Confirma que irá retirar estas mercadorias?'}, class:"btn btn-primary" %>
+            <%= link_to 'Rejeitar', reject_path(@order), method: :patch, data: { confirm: 'Confirma rejeitar mercadorias?'}, class:"btn btn-outline-danger ml-2" %>
           <% end %>
         </div>
       </div>

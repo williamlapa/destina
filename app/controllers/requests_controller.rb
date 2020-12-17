@@ -53,6 +53,13 @@ class RequestsController < ApplicationController
   end
 
   def destroy
+    if @order.present?
+      @order.destroy
+      @order.product.update_attributes(quantity: (@order.product.quantity + @order.request.quantity))
+      if @order.product.quantity.positive?
+        @order.product.update_attributes(status: "Disponível")
+      end
+    end
     @request.destroy
     redirect_to requests_url
   end

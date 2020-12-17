@@ -16,8 +16,9 @@
         <p><strong>Descrição:</strong> <%= @request.description %></p>
         <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
         <p><strong>Situação:</strong> <%= @request.status %></p>
-        <%#= link_to "Requisições", requests_path, class: 'btn btn-primary' %>
-        <%= link_to "Estoque #{@request.category.name}", request_products_path(params[:id]), class: 'btn btn-success' %>
+        <% if @request.status == 'Em análise' %>
+          <%= link_to "Estoque #{@request.category.name}", request_products_path(params[:id]), class: 'btn btn-success' %>
+        <% end %>
       </div>
     </div>
     <div class='container col-9 ml-3'>
@@ -42,17 +43,21 @@
                 <td class="text-center"><%= request.category.name %></td>
                 <td><%= request.description %></td>
                 <td class="text-center"><%= request.quantity %></td>
-                  <% if request.status == 'Em análise'%>
-                    <td class="text-center"><i class="far fa-hourglass" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
-                  <% elsif request.status == 'Aprovada' %>
-                    <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
-                  <% elsif request.status == 'Rejeitada' %>
-                    <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
-                  <% elsif request.status == 'A retirar' %>
-                    <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
-                  <% else %>
-                    <td></td>
-                  <% end %>
+
+                <% if request.status == 'Em análise'%>
+                  <td class="text-center"><i class="far fa-hourglass" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
+                <% elsif request.status == 'Aprovada' %>
+                  <td class="text-center"><i class="fa fa-check" aria-hidden="true"></i> <strong><%= request.status %></strong></td>
+                <% elsif request.status == 'Rejeitada' %>
+                  <td class="text-center"><i class="fa fa-times" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+                <% elsif request.status == 'A retirar' %>
+                  <td class="text-center"><i class="fa fa-truck" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+                <% elsif request.status == 'Encerrada' %>
+                  <td class="text-center"><i class="fa fa-lock" aria-hidden="true"></i><strong><%= request.status %></strong></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+
                 <% if request.status == 'Em análise' %>
                     <!--GRANDE IF ELSE PARA MOSTRAR FIGURA -->
                     <% if request.category.id == 1 %>
@@ -138,7 +143,7 @@
         <p><strong>Descrição:</strong> <%= @request.description %></p>
         <p><strong>Quantidade:</strong> <%= @request.quantity %></p>
         <p><strong>Situação:</strong> <%= @request.status %></p>
-        <%= link_to 'Requisições', requests_path(request), class: 'btn btn-primary' %>
+        <%= link_to 'Requisições', requests_path, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
