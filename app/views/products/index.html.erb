@@ -4,7 +4,7 @@
       <h1>Mercadorias</h1>
     </div>
     <div class = mt-3>
-      <a class="nav-item nav-link btn btn-outline-secondary btn-sm" href="<%= new_product_path %>">Cadastrar Mercadoria</a>
+      <%= link_to "Cadastrar Mercadoria", new_product_path, class: "nav-item nav-link btn btn-outline-secondary btn-sm" %>
     </div>
     <div class = mt-3>
       <%= link_to 'Gerenciais', charts_products_path, class: 'btn btn-outline-primary' %>
@@ -35,10 +35,10 @@
             <p>Quantidade: <%= product.quantity %></p>
             <p>Situação: <%= product.status %></p>
             <% if params[:request_id].present? %>
-              <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}" %>">Detalhes</a>
-              <a class="btn btn-primary" href="<%= "/requests/#{params[:request_id]}/products/#{product.id}/orders/new" %>">Gerar ordem</a>
+              <%= link_to "Detalhes", request_product_path(params[:request_id], product), class: "btn btn-outline-primary" %>
+              <%= link_to "Gerar ordem", new_request_product_order_path(params[:request_id], product), class: "btn btn-primary" %>
             <% else %>
-              <a href="<%= product_path(product) %>" class="btn btn-outline-primary">Ver mercadoria</a>
+              <%= link_to "Ver mercadoria", product_path(product), class: "btn btn-outline-primary" %>
             <% end %> 
           </div>
         </div>
@@ -49,4 +49,3 @@
     <%= link_to 'Voltar', :back %>
   </div>
 <% end %>
-
