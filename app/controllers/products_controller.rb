@@ -9,6 +9,14 @@ class ProductsController < ApplicationController
     else
       @products = Product.all.includes(:photo_attachment, :category)
     end
+    @markers = @products.map do |product|
+      {
+        lat: product.latitude,
+        lng: product.longitude
+        # infoWindow: render_to_string(partial: "infowindow", locals: { product: product }),
+        # image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
+      }
+    end
   end
 
   def charts
