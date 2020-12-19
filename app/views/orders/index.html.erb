@@ -28,9 +28,9 @@
               <td class="text-center"><%= order.request.quantity %></td>
               <td class="text-center"><%= order.status %></td>
               <td class="text-center"><%= order.user.first_name %></td>
-              <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/requests/#{order.request_id}/products/#{order.product_id}/orders/#{order.id}" %>">Ver ordem</a></td>
-              <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/requests/#{order.request_id}" %>">Ver requisição</a></td>
-              <td class="text-center"><a class="btn btn-outline-primary" href="<%= "/products/#{order.product_id}" %>">Ver mercadoria</a></td>
+              <td class="text-center"><%= link_to "Ver ordem", request_product_order_path(order.request, order.product, order), class: "btn btn-outline-primary" %></td>
+              <td class="text-center"><%= link_to "Ver requisição", request_path(order.request), class: "btn btn-outline-primary" %></td>
+              <td class="text-center"><%= link_to "Ver mercadoria", product_path(order.product), class: "btn btn-outline-primary" %></td>
             </tr>
           <% end %> 
         </table>

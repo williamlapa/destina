@@ -21,7 +21,7 @@
           <p><strong>Disponibilidade:</strong> <%= @product.status %></p>
           <p><strong>Endereço de localização:</strong> <%= @product.address %></p>
           <% if params[:request_id].present? && @product.status == "Disponível" %>
-            <a class="btn btn-outline-primary" href="<%= "/requests/#{params[:request_id]}/products/#{@product.id}/orders/new" %>">Gerar nova ordem</a>
+            <%= link_to "Gerar nova ordem", new_request_product_order_path(params[:request_id], @product), class: "btn btn-outline-primary" %>
           <% end %>
         </div>
         <div class="container mt-2">
