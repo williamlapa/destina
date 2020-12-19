@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @markers = @products.map do |product|
       {
         lat: product.latitude,
-        lng: product.longitude
+        lng: product.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { product: product }),
         image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
