@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
     else
       @products = Product.all.includes(:photo_attachment, :category)
     end
+    @products = Product.geocoded
     @markers = @products.map do |product|
       {
         lat: product.latitude,
