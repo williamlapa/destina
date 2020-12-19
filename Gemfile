@@ -73,3 +73,6 @@ gem "chartkick"
 
 # search
 gem 'pg_search', '~> 2.3.0'
+
+# Geocoding
+gem 'geocoder'
