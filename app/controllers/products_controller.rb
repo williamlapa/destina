@@ -2,13 +2,14 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
-    @products = Product.geocoded
-    @markers = @products.map do |product|
+    @products = Product.all
+
+    @markers = @products.geocoded.map do |product|
       {
         lat: product.latitude,
         lng: product.longitude,
-        infoWindow: render_to_string(partial: "infowindow", locals: { product: product }),
-        image_url: helpers.asset_url('app/assets/images/products.jpeg')
+        infoWindow: render_to_string(partial: "info_window", locals: { product: product }),
+        image_url: helpers.asset_url('logo.png')
       }
     end
 

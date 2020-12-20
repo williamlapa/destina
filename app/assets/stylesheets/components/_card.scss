@@ -67,3 +67,16 @@
   margin: 10px;
   background-color: $gray;
 }
+
+.card-title h5 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-text p {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
