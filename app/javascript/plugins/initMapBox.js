@@ -7,7 +7,9 @@ const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v10'
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [-54.603801, -20.48572],
+    zoom: 15
   });
 };
 
@@ -20,8 +22,8 @@ const addMarkersToMap = (map, markers) => {
     element.className = 'marker';
     element.style.backgroundImage = `url('${marker.image_url}')`;
     element.style.backgroundSize = 'contain';
-    element.style.width = '25px';
-    element.style.height = '25px';
+    element.style.width = '30px';
+    element.style.height = '30px';
 
     new mapboxgl.Marker(element)
       .setLngLat([marker.lng, marker.lat])
@@ -34,7 +36,7 @@ const addMarkersToMap = (map, markers) => {
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
 
 // Função que agrega tudo e chama as outras funções.
@@ -50,6 +52,10 @@ const initMapbox = () => {
       accessToken: mapboxgl.accessToken,
       mapboxgl }
       ));
+    return {
+      map,
+      geocoder // return "geocoder" so we can handle events from it
+    };
   }
 };
 

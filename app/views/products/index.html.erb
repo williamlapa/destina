@@ -43,6 +43,7 @@
                       </div>
                 </div>
               <p>Quantidade: <%= product.quantity %></p>
+              <p>Localização: <%= product.address.split(",").first %></p>
               <p>Situação: <strong><%= product.status %></strong></p>
             </div>
             <% if params[:request_id].present? %>
