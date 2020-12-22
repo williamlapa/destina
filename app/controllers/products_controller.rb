@@ -2,6 +2,17 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
+    @products = Product.all
+
+    @markers = @products.geocoded.map do |product|
+      {
+        lat: product.latitude,
+        lng: product.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { product: product }),
+        image_url: helpers.asset_url('products.jpeg')
+      }
+    end
+
     if params[:query].present?
       @products = Product.includes(:photo_attachment, :category).search_by_category_name_description_and_address(params[:query])
     elsif params[:request_id].present?

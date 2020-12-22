@@ -2,6 +2,7 @@
   "name": "destina",
   "private": true,
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^4.7.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -10,6 +11,8 @@
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
     "jquery": "^3.5.1",
+    "mapbox-gl": "^2.0.0",
+    "places.js": "^1.19.0",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0"
   },

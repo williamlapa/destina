@@ -1,4 +1,3 @@
-
 # Cria um usuário da Receita para manipular as Ordens
 # Atende criterios de validacao do modelo e schema: email unico, cpf com 11 e cnpj com 14 digitos
 user = User.create(cpf: "12345678911",
@@ -22,8 +21,8 @@ while number < 20
   cpf = rand.to_s[2..12]
   categories = ['veículo', 'computador', 'celular', 'vestuário', 'motocicleta', 'utilitário', 'brinquedo', 'jogo', 'acessório', 'eletrônico']
 
-# Cria 10 usuarios externos de entidades
-# Atende criterios de validacao do modelo e schema: email unico, cpf com 11 e cnpj com 14 digitos
+  # Cria 10 usuarios externos de entidades
+  # Atende criterios de validacao do modelo e schema: email unico, cpf com 11 e cnpj com 14 digitos
   user = User.create(cpf: cpf,
                      first_name: rand_text.capitalize,
                      last_name: rand_text.reverse,
@@ -35,10 +34,10 @@ while number < 20
                      role: "Solicitante",
                      entity_name: entity_name)
 
-# Cria as 10 categorias
+  # Cria as 10 categorias
   category = Category.create(name: categories[number - 10].capitalize)
 
-# cria 10 requisições
+  # cria 10 requisições
   category = categories.sample
 
   car_brand = ['fiat', 'gm', 'vw', 'honda', 'renault', 'toyota'].sample
@@ -80,7 +79,7 @@ while number < 20
                            status: "Em análise",
                            description: "Nossa entidade precisa de #{quant} unidades de #{category.capitalize} da marca #{brand.capitalize}",
                            legal_framework: "Lei xxx de x/x/xxxx",
-                           user_id: "#{number - 9}",
+                           user_id: (number - 9).to_s,
                            category_id: cat_id)
   number += 1
 end
@@ -147,12 +146,12 @@ while number < 100
   end
 
   product = Product.create(name: name.capitalize,
-                         brand: brand.upcase,
-                         description: "#{name} da #{brand.capitalize}",
-                         address: "Av #{rand_text.reverse.upcase}, Numero 32#{number}",
-                         quantity: quantity,
-                         status: 'Disponível',
-                         value: value,
-                         category_id: catid)
+                           brand: brand.upcase,
+                           description: "#{name} da #{brand.capitalize}",
+                           address: "Av #{rand_text.reverse.upcase}, Numero 32#{number}",
+                           quantity: quantity,
+                           status: 'Disponível',
+                           value: value,
+                           category_id: catid)
   number += 1
 end
