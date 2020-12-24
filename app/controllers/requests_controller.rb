@@ -15,6 +15,14 @@ class RequestsController < ApplicationController
         @requests = Request.includes(:category, :user).where(user_id: current_user)
       end
     end
+    respond_to do |format|
+      format.xlsx do
+        response.headers[
+          'Content-Disposition'
+        ] = "attachment; filename=requests.xlsx"
+      end
+      format.html { render :index }
+    end
   end
 
   def show
@@ -56,9 +64,7 @@ class RequestsController < ApplicationController
     if @request.order.present?
       @request.order.destroy
       @request.order.product.update_attributes(quantity: (@request.order.product.quantity + @request.quantity))
-      if @request.order.product.quantity.positive?
-        @request.order.product.update_attributes(status: "Disponível")
-      end
+      @request.order.product.update_attributes(status: "Disponível") if @request.order.product.quantity.positive?
     end
     @request.destroy
     redirect_to requests_url
