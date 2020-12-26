@@ -23,8 +23,8 @@ class ProductsImport
 
   def load_imported_products
     spreadsheet = open_spreadsheet
-    header = spreadsheet.row(5)
-    (6..spreadsheet.last_row).map do |i|
+    header = spreadsheet.row(4)
+    (5..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       product = Product.find_by_id(row["id"]) || Product.new
       product.attributes = row.to_hash
@@ -43,7 +43,7 @@ class ProductsImport
     else
       imported_products.each_with_index do |product, index|
         product.errors.full_messages.each do |msg|
-          errors.add :base, "Row #{index + 6}: #{msg}"
+          errors.add :base, "Row #{index + 5}: #{msg}"
         end
       end
       false

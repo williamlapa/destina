@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   resources :categories, only: :index
   resources :orders, only: %i[index edit show update destroy]
-  resources :products_imports, only: %i[new create]
+  resources :products_imports, only: %i[index new create]
 
   patch '/accept_orders/:id', to: "orders#accept", as: :accept
   patch '/reject_orders/:id', to: "orders#reject", as: :reject

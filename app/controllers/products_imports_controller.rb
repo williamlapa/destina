@@ -1,4 +1,16 @@
 class ProductsImportsController < ApplicationController
+  def index
+    @products = Product.all
+    respond_to do |format|
+      format.xlsx do
+        response.headers[
+          'Content-Disposition'
+        ] = "attachment; filename=products.xlsx"
+      end
+      format.html { render :index }
+    end
+  end
+
   def new
     @products_import = ProductsImport.new
   end
