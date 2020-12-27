@@ -1,7 +1,9 @@
 <% if current_user.role == 'RFB' %>
   <div class="container w-50 mt-3">
-    <h1 class="text-center">Cadastrar mercadoria</h1>
-
+    <div class="text-center">
+      <h1>Cadastrar mercadoria</h1>
+      <%= link_to 'Importar do Excel', products_imports_new_path, class: "btn btn-outline-success" %>
+    </div>
     <%= render 'form', product: @product %>
 
     <%= link_to 'Voltar', products_path %>

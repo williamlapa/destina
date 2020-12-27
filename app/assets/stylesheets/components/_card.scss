@@ -80,3 +80,13 @@
   margin-bottom: 4px;
   margin-top: 4px;
 }
+
+.cardimport {
+  display: flex;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 3px;
+  padding: 3px;
+  justify-content: space-around;
+}

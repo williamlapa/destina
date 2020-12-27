@@ -1,0 +1,26 @@
+
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+
+  wb.add_worksheet(name: "products") do |sheet|
+    # Add a title row
+    sheet.add_row ["Modelo Importação de Produtos"], style: project_heading
+    # Add the date this was downloaded
+    sheet.add_row ["Data do modelo", Time.now.strftime("%b %-d, %Y")]
+    # Add a blank row
+    sheet.add_row []
+    # Create the header row
+    sheet.add_row ["category_id", "name", "brand", "description", "address", "quantity", "status", "value"], style: heading
+    # Create the database reference row
+    # Ajustar linha abaixo
+    sheet.add_row ["category_id", "name", "brand", "description", "address", "quantity", "status", "value"], style: heading
+    # Create entries for each product
+    @products.each do |product|
+      sheet.add_row [product.category_id, product.name, product.brand, product.description, product.address, 
+      product.quantity, product.status, product.value ]
+    end
+  end
+end
