@@ -1,15 +1,6 @@
 <div class="container w-50">
-
   <h1 class="text-center">Importar lista de produtos do Excel</h1>
-
-  <h3>Exigências</h3>
-  <ul>
-    <li> Apenas importe usando o modelo: <%= link_to 'Modelo', products_imports_modelo_path(format: :xlsx), class: "btn btn-outline-success m-1" %></li>
-    <li> Preencher a partir da linha 5.</li>
-    <li> Preencher coluna Status com o texto "Disponível"</li>    
-  </ul>
-
-  <div class="d-flex">
+  <div class="cardimport">
     <div>
       <h5 class="text-center">Tabela Categorias</h5>
       <table class="table table-bordered table-striped w-25">
@@ -29,7 +20,7 @@
     </div>
 
     <div>
-      <h5>Escolha o arquivo</h5>
+      <h3>Escolha o arquivo</h3>
       <%= form_for @products_import do |f| %>
         <% if @products_import.errors.any? %>
           <%= pluralize(@products_import.errors.count, "error") %> Corrija sua planilha e importe novamente.
@@ -39,10 +30,17 @@
             <% end %>
           </ul>
         <% end %>
-
         <%= f.file_field :file %>
         <%= f.submit "Importar" %>
       <% end %>
+      <h3 class="mt-5">Exigências</h3>
+      <ul>
+        <li> Apenas importe usando o modelo: <%= link_to 'Modelo', products_imports_modelo_path(format: :xlsx), class: "btn btn-outline-success m-1" %></li>
+        <li> Preencher a partir da linha 5.</li>
+        <li> Preencher coluna Status com o texto "Disponível".</li>
+        <li> Usar tabela de categorias ao lado.</li>
+      </ul>
+    
     </div>
   </div>
 </div>
